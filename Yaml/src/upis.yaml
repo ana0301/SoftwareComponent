@@ -1,22 +1,10 @@
 - title: "student"
   id: "1"
   entityData:
-    studentFriend:
-    - title: "Student"
-      id: 2
-      entityData:
-        fname: "Anja"
-        age: 26
-    - title: "Student"
-      id: 3
-      entityData:
-        fname: "Marija"
-        age: 21
-    studentName: "Ana"
-    studentSubjects:
-    - "oop"
-    - "uup"
+    studentName:
+      property: "Ana"
 - title: "student"
   id: "2"
   entityData:
-    studentName: "Anja"
+    studentName:
+      property: "Anja"
