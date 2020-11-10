@@ -27,11 +27,10 @@ public class ImportExportYaml implements ImportExportService {
             Iterator<Object> it = objects.iterator();
             List<Entity> entities = new ArrayList<Entity>();
             while(it.hasNext()){
-                Map<String, Object> map = (HashMap<String, Object>) it.next();
+                Map<String,Object> map = (HashMap<String, Object>) it.next();
                 Entity entity = new Entity();
                 entity.setId(map.get("id").toString());
                 entity.setTitle((String) map.get("title"));
-                //entity.setEntityData((Map<String, Object>)map.get("entityData"));
                 if(map.get("entityData") != null){
                     Map<String,Object> entityData = (Map<String, Object>) map.get("entityData");
                     for(Map.Entry<String,Object> property : entityData.entrySet()){
@@ -47,6 +46,7 @@ public class ImportExportYaml implements ImportExportService {
                                     if(data.getValue() instanceof String)
                                         nestedEntity.addEntityData(data.getKey(),new SimpleType(data.getValue().toString()));
                                 }
+                                entity.addEntityData(property.getKey(),entity);
                             }
                             entity.addEntityData(property.getKey(), nestedEntity);
                         }else if(property.getValue()instanceof String){

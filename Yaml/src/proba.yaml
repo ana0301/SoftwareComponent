@@ -3,20 +3,12 @@ title: "student"
 id: 1
 entityData:
   studentFriend:
-    - title: "Student"
+      title: "Student"
       id: 2
       entityData:
         fname: "Anja"
         age: 26
-    - title: "Student"
-      id: 3
-      entityData:
-        fname: "Marija"
-        age: 21
   studentName: "Ana"
-  studentSubjects:
-    - "oop"
-    - "uup"
 ---
 id: 2
 title: "student"
