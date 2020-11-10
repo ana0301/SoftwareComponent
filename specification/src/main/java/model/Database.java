@@ -24,16 +24,18 @@ public class Database {
     }
 
     public String getUniqueId(){
-        int i;
+        boolean unique;
         lastUnique++;
         while (true){
-            for (i = 0; i < allIds.size(); i++){
-                if (allIds.get(i).equalsIgnoreCase(lastUnique.toString())){
+            unique = true;
+            for (String id: allIds) {
+                if (id.equalsIgnoreCase(lastUnique.toString())){
+                    unique = false;
                     lastUnique++;
                     break;
                 }
             }
-            if (i == allIds.size()) break;
+            if(unique) break;
         }
         return lastUnique.toString();
     }
@@ -43,12 +45,26 @@ public class Database {
     }
 
     public boolean addEntity(Entity e){
-        return this.entityList.add(e);
+        if (addId(e.getId())) return this.entityList.add(e);
+        return false;
     }
 
     public boolean removeEntity(String id){
         for (Entity e: entityList) {
-            if (e.getId().equalsIgnoreCase(id)) return entityList.remove(e);
+            if (e.getId().equalsIgnoreCase(id)) {
+                if (removeId(e.getId())) return entityList.remove(e);
+            }
+        }
+        return false;
+    }
+
+    public boolean addId(String id){
+        return this.allIds.add(id);
+    }
+
+    public boolean removeId(String id){
+        for(String i: allIds){
+            if (i.equalsIgnoreCase(id)) return allIds.remove(i);
         }
         return false;
     }

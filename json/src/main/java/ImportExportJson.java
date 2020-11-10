@@ -19,6 +19,9 @@ public class ImportExportJson extends ImportExportService {
 
     @Override
     public List<Entity> loadDatabase(File file) throws IOException {
+        //TODO proveriti da li je unsupported implementation
+        //TODO na kraju celu listu dodati u Database
+        //TODO svaki id (i ugnjezdene!) dodati u listu id-jeva u Database
         System.out.println(this.getClass().getName());
         List<Entity> entities = new ArrayList<Entity>();
         String json = fileToString(file);
