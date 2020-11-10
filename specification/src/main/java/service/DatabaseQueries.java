@@ -1,8 +1,8 @@
 package service;
 
-import model.CompareOperator;
+import enums.CompareOperator;
 import model.Entity;
-import model.SortOrder;
+import enums.SortOrder;
 
 import java.util.List;
 
