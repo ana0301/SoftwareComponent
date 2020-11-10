@@ -21,6 +21,8 @@ public class MainFrame extends JFrame {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        //HEEEEEJ
         database = Database.getInstance();
         dataTableModel = new DataTableModel();
 
