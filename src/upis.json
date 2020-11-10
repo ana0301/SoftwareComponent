@@ -1,0 +1,1 @@
+[{"title":"Student","id":"1.0","entityData":{"studentLastName":"Reljic","studentAvg":9.0,"teamPartner":{"title":"Student","id":"2.0"},"studentName":"Ana","predmeti":[4.0,3.0,4.0,5.0,2.0],"studentIndex":"RN31-2018"}},{"title":"Student","id":"2.0","entityData":{"studentLastName":"Kulezic","studentAvg":8.5,"studentName":"Andrijana","studentIndex":"RN42-2018"}}]

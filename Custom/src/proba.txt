@@ -1,0 +1,33 @@
+<
+id->1
+title->student
+entityData->#
+    studentName->Ana
+    studentIndeks->RN31-2018
+    studentPartner-><
+        title->fdsfsfsd
+        id->3
+        entityData->#
+            studentName->Anja
+            studentIndeks->RN42-2018
+        #
+    >
+#
+>
+<
+title->sssss
+id->2
+entityData->#
+studentName->Marija
+studentIndeks->RN55-2018
+studentPartner-><
+title->friend
+id->4
+entityData->#
+studentName->Ana
+studentIndeks->RN31-2018
+#
+>
+#
+>
+.
