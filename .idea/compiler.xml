@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Specification" />
         <module name="Custom" />
+        <module name="GUI" />
         <module name="Json" />
         <module name="Yaml" />
       </profile>

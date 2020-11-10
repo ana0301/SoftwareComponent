@@ -13,6 +13,7 @@
         <module>Json</module>
         <module>Yaml</module>
         <module>Custom</module>
+        <module>GUI</module>
     </modules>
 
 
