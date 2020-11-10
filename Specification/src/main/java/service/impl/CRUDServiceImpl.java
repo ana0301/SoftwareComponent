@@ -1,7 +1,6 @@
 package service.impl;
 
 import exceptions.IdNotUnique;
-import model.Database;
 import model.Entity;
 import service.CRUDService;
 

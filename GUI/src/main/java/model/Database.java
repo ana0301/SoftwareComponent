@@ -11,13 +11,11 @@ public class Database {
     private Integer uqID;
     //TODO figure out uqid
     private Map<String, Entity> entityMap;
-    private Map<Integer, Entity> nestedEntityMap;
 
     private Database(){
         this.title = null;
         this.uqID = 0;
         this.entityMap = new HashMap<String, Entity>();
-        this.nestedEntityMap = new HashMap<Integer, Entity>();
     }
 
     public static Database getInstance() {
@@ -46,11 +44,9 @@ public class Database {
     public void addEntity(Entity e){
         entityMap.put(e.getId(), e);
     }
- /*  public void deleteEntity(Entity e){
-        entityMap.remove(e.getId(), e);
-    }*/
 
-    public Map<Integer, Entity> getNestedEntityMap() {
-        return nestedEntityMap;
+    public void deleteEntity(Entity e){
+        entityMap.remove(e.getId(), e);
     }
+
 }

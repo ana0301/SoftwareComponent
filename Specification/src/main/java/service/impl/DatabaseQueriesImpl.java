@@ -1,7 +1,6 @@
 package service.impl;
 
 import model.CompareOperator;
-import model.Database;
 import model.Entity;
 import model.SortOrder;
 import service.DatabaseQueries;
