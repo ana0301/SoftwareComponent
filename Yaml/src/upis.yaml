@@ -1,6 +1,12 @@
 - title: "student"
   id: "1"
   entityData:
+    studentFriend:
+      title: "Student"
+      id: "2"
+      entityData:
+        fname:
+          property: "Anja"
     studentName:
       property: "Ana"
 - title: "student"
