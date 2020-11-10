@@ -1,11 +1,8 @@
 package appcore;
 
-import dialogs.NewFileDialog;
-
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 
 public class MainFrameWindowListener extends WindowAdapter {
 
