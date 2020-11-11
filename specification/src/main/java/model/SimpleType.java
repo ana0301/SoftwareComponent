@@ -17,8 +17,6 @@ public class SimpleType extends Type{
 
     @Override
     public String toString() {
-        return "SimpleType{" +
-                "property='" + property + '\'' +
-                '}';
+        return getProperty();
     }
 }

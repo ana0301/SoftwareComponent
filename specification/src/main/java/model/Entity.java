@@ -4,10 +4,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Entity extends Type {
+public class Entity{
     private String title;
     private String id;
-    private Map<String, Type> entityData = new HashMap<String, Type>();
+    private Map<String, Object> entityData = new HashMap<String, Object>();
 
     public Entity(){}
 
@@ -16,7 +16,7 @@ public class Entity extends Type {
         this.id = id;
     }
 
-    public Entity(String title, String id, Map<String, Type> entityData) {
+    public Entity(String title, String id, Map<String, Object> entityData) {
         this.title = title;
         this.id = id;
         this.entityData = entityData;
@@ -39,15 +39,15 @@ public class Entity extends Type {
         this.id = id;
     }
 
-    public Map<String, Type> getEntityData() {
+    public Map<String, Object> getEntityData() {
         return entityData;
     }
 
-    public void setEntityData(Map<String, Type> entityData) {
+    public void setEntityData(Map<String, Object> entityData) {
         this.entityData = entityData;
     }
 
-    public void addEntityData(String key, Type value){
+    public void addEntityData(String key, Object value){
         entityData.put(key,value);
     }
 

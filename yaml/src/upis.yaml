@@ -1,16 +1,15 @@
-- title: "student"
-  id: "1"
-  entityData:
-    studentFriend:
-      title: "Student"
-      id: "2"
-      entityData:
-        fname:
-          property: "Anja"
-    studentName:
-      property: "Ana"
-- title: "student"
-  id: "2"
-  entityData:
-    studentName:
-      property: "Anja"
+---
+title: "student"
+id: "1"
+entityData:
+  studentFriend:
+    title: "Student"
+    id: "2"
+    entityData:
+      fname: "Anja"
+  studentName: "Ana"
+---
+title: "student"
+id: "2"
+entityData:
+  studentName: "Anja"

@@ -1,1 +1,31 @@
-[{"title":"Student","id":"1","entityData":{"studentLastName":{"property":"Reljic"},"studentAvg":{"property":"9"},"teamPartner":{"title":"Student","id":"2","entityData":{"studentLastName":{"property":"Kulezic"},"studentName":{"property":"Andrijana"},"studentIndex":{"property":"RN42-2018"}}},"studentName":{"property":"Ana"},"studentIndex":{"property":"RN31-2018"}}},{"title":"Student","id":"2","entityData":{"studentLastName":{"property":"Kulezic"},"studentAvg":{"property":"8.5"},"studentName":{"property":"Andrijana"},"studentIndex":{"property":"RN42-2018"}}}]
+[
+  {
+    "title": "Student",
+    "id": "1",
+    "entityData": {
+      "studentLastName": "Reljic",
+      "studentAvg": "9",
+      "teamPartner": {
+        "title": "Student",
+        "id": "2",
+        "entityData": {
+          "studentLastName": "Kulezic",
+          "studentName": "Andrijana",
+          "studentIndex": "RN42-2018"
+        }
+      },
+      "studentName": "Ana",
+      "studentIndex": "RN31-2018"
+    }
+  },
+  {
+    "title": "Student",
+    "id": "2",
+    "entityData": {
+      "studentLastName": "Kulezic",
+      "studentAvg": "8.5",
+      "studentName": "Andrijana",
+      "studentIndex": "RN42-2018"
+    }
+  }
+]

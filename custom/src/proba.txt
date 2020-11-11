@@ -2,16 +2,16 @@
 id->1
 title->student
 entityData->#
-    studentName->Ana
-    studentIndeks->RN31-2018
-    studentPartner-><
-        title->fdsfsfsd
-        id->3
-        entityData->#
-            studentName->Anja
-            studentIndeks->RN42-2018
-        #
-    >
+studentName->Ana
+studentIndeks->RN31-2018
+studentPartner-><
+title->fdsfsfsd
+id->3
+entityData->#
+studentName->Anja
+studentIndeks->RN42-2018
+#
+>
 #
 >
 <

@@ -32,9 +32,10 @@ public class CRUDServiceImpl implements CRUDService {
             id = Database.getInstance().getUniqueId();
         }
 
-        Entity e = new Entity(title, id, mapData(keys, values));
+       // Entity e = new Entity(title, id, mapData(keys, values));
 
-        return Database.getInstance().addEntity(e);
+        //return Database.getInstance().addEntity(e);
+        return false;
     }
 
     @Override
@@ -46,9 +47,9 @@ public class CRUDServiceImpl implements CRUDService {
             childId = Database.getInstance().getUniqueId();
         }
 
-        Type e = new Entity(title, childId, mapData(keys,values));
+        //Type e = new Entity(title, childId, mapData(keys,values));
 
-        Database.getInstance().getEntityById(parentId).getEntityData().put(parentKey, e);
+        //Database.getInstance().getEntityById(parentId).getEntityData().put(parentKey, e);
 
         return true;
     }
@@ -65,9 +66,10 @@ public class CRUDServiceImpl implements CRUDService {
 
         Database.getInstance().removeEntity(oldId);
 
-        Entity e = new Entity(title, newId, mapData(keys, values));
+        //Entity e = new Entity(title, newId, mapData(keys, values));
 
-        return Database.getInstance().addEntity(e);
+        //return Database.getInstance().addEntity(e);
+        return false;
     }
 
     @Override

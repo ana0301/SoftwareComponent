@@ -16,6 +16,7 @@ public class Database {
     private Integer lastUnique;
     private List<Entity> entityList;
     private List<String> allIds;
+    private List<File> currentFiles;
 
     private Database(){
         this.lastUnique = -1;
@@ -95,4 +96,12 @@ public class Database {
     }
 
 
+
+    public List<File> getCurrentFiles() {
+        return currentFiles;
+    }
+
+    public void setCurrentFiles(List<File> currentFiles) {
+        this.currentFiles = currentFiles;
+    }
 }

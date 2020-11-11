@@ -19,14 +19,16 @@ public class MainFrame extends JFrame {
     private CRUDService crudService;
     private FilterSortService filterSortService;
 
+    private ImportExportService importExportService;
     private MainFrame() {
         try {
             Class.forName("ImportExportJson");
-            ImportExportService importExportService = ImportExportManager.getImportExportService();
+             importExportService = ImportExportManager.getImportExportService();
         }catch (Exception e){
             e.printStackTrace();
         }
 
+        //HEEEEEJ
         dataTableModel = new DataTableModel();
         crudService = new CRUDServiceImpl();
         filterSortService = new FilterSortServiceImpl();
@@ -69,4 +71,7 @@ public class MainFrame extends JFrame {
         return InstanceHolder.instance;
     }
 
+    public ImportExportService getImportExportService() {
+        return importExportService;
+    }
 }
