@@ -12,7 +12,7 @@ public class AddEntityController implements ActionListener {
 
         AddUpdateDialog addUpdateDialog = new AddUpdateDialog(MainFrame.getInstance(), "Add Entity", true, null);
         if(addUpdateDialog.getMode() == 0){
-            //check for errors
+
         }else{
 
         }

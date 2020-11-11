@@ -16,6 +16,7 @@ public class DataView extends JPanel{
     private JButton updateButton;
     private JButton filterButton;
     private JButton sortButton;
+    private JButton showAllDataButton;
 
     public DataView(){
         super();
@@ -45,6 +46,8 @@ public class DataView extends JPanel{
         filterButton.addActionListener(new FilterController());
         this.sortButton = new JButton("SORT");
         sortButton.addActionListener(new SortController());
+        this.showAllDataButton = new JButton("SHOW ALL");
+        showAllDataButton.addActionListener(new ShowAllDataController());
 
         buttonPanel.add(addButton);
         buttonPanel.add(addNestedButton);

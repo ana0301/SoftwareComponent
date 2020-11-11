@@ -61,6 +61,12 @@ public class SortDialog extends JDialog implements ActionListener {
         setVisible(true);
     }
 
+    public String[] getFields(){
+        String[] strings = {sortByCmb.getItemAt(sortByCmb.getSelectedIndex()), keyTextField.getText(),
+                            sortOrderCmb.getItemAt(sortOrderCmb.getSelectedIndex())};
+        return strings;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("CONFIRM")){

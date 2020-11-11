@@ -26,7 +26,7 @@ public class CRUDServiceImpl implements CRUDService {
 
     @Override
     public boolean addEntity(String title, String id, String[] keys, String[] values) throws IdNotUnique {
-        if (id != null || !id.equalsIgnoreCase("")){
+        if (id != null){
             if(!Database.getInstance().isUniqueId(id)) throw new IdNotUnique();
         }else{
             id = Database.getInstance().getUniqueId();
@@ -40,7 +40,7 @@ public class CRUDServiceImpl implements CRUDService {
     @Override
     public boolean addNestedEntity(String parentId, String parentKey, String title, String childId, String[] keys, String[] values) throws IdNotUnique {
         //TODO exception da parent entity nije izabran
-        if (childId != null || !childId.equalsIgnoreCase("")){
+        if (childId != null){
             if(!Database.getInstance().isUniqueId(childId)) throw new IdNotUnique();
         }else{
             childId = Database.getInstance().getUniqueId();

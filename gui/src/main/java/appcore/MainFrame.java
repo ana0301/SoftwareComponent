@@ -4,6 +4,10 @@ import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.DataTableModel;
 import model.Database;
+import service.CRUDService;
+import service.FilterSortService;
+import service.impl.CRUDServiceImpl;
+import service.impl.FilterSortServiceImpl;
 import view.DataView;
 
 import javax.swing.*;
@@ -11,8 +15,9 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    private Database database;
     private DataTableModel dataTableModel;
+    private CRUDService crudService;
+    private FilterSortService filterSortService;
 
     private MainFrame() {
         try {
@@ -22,9 +27,9 @@ public class MainFrame extends JFrame {
             e.printStackTrace();
         }
 
-        //HEEEEEJ
-        database = Database.getInstance();
         dataTableModel = new DataTableModel();
+        crudService = new CRUDServiceImpl();
+        filterSortService = new FilterSortServiceImpl();
 
         this.setTitle("GUIapp2a");
         this.setSize(1200, 1200);
@@ -38,12 +43,17 @@ public class MainFrame extends JFrame {
         this.addWindowListener(new MainFrameWindowListener());
     }
 
-    public Database getDatabase() {
-        return database;
-    }
 
     private static class InstanceHolder {
         private static MainFrame instance = new MainFrame();
+    }
+
+    public CRUDService getCrudService() {
+        return crudService;
+    }
+
+    public FilterSortService getFilterSortService() {
+        return filterSortService;
     }
 
     public DataTableModel getDataTableModel() {

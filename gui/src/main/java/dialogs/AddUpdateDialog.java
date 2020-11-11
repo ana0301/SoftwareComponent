@@ -61,6 +61,16 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
         setVisible(true);
     }
 
+    public String[] getFields(){
+        return new String[]{idField.getText(), titleField.getText(), dataTextArea.getText()};
+    }
+
+    public void setFields(String[] args){
+        idField.setText(args[0]);
+        titleField.setText(args[1]);
+        dataTextArea.setText(args[2]);
+    }
+
     public int getMode() {
         return mode;
     }

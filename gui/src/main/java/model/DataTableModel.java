@@ -4,26 +4,21 @@ package model;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class DataTableModel extends DefaultTableModel {
 
     private List<Entity> entities;
 
     public DataTableModel(){
-        super(new String[]{"Title", "ID", "Data"}, 0);
-        entities = new ArrayList<>();
-    }
-    /*
-    @Override
-    public void addRow(Vector<?> rowData) {
-
-        super.addRow(rowData);
+        super(new String[]{"ID", "Title", "Data"}, 0);
+        this.entities = new ArrayList<>();
     }
 
-    @Override
-    public void removeRow(int row) {
+    public void updateTableModel(List<Entity> entities){
+        for (Entity e: entities) {
+            String[] rowData = {e.getId(), e.getTitle(), e.getEntityData().toString()};
+            addRow(rowData);
+        }
+    }
 
-        super.removeRow(row);
-    }*/
 }

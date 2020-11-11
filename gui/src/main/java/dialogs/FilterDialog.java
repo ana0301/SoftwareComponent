@@ -125,11 +125,24 @@ public class FilterDialog extends JDialog implements ActionListener {
         }
     }
 
+    public ArrayList<String[]> getFields(){
+        ArrayList<String[]> toReturn = new ArrayList<>();
+        for (int i = 0; i < 5; i++){
+            String[] strings = {filterByCmb.get(i).getItemAt(filterByCmb.get(i).getSelectedIndex()),
+                leftTextField.get(i).getText(),
+                    filterOptionsCmb.get(i).getItemAt(filterOptionsCmb.get(i).getSelectedIndex()),
+                    rightTextField.get(i).getText()};
+            toReturn.add(strings);
+        }
+        return toReturn;
+    }
+
     public int getMode() {
         return mode;
     }
 
     public void setMode(int mode) {
+
         this.mode = mode;
     }
 
