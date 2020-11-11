@@ -99,6 +99,7 @@ public class MainFrameWindowListener extends WindowAdapter {
         } else if (o == JOptionPane.NO_OPTION) {
             String name = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter a name for new database", "Create", JOptionPane.INFORMATION_MESSAGE);
             if (name != null) {
+                chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int choose = chooser.showSaveDialog(MainFrame.getInstance());
                 if (choose == JFileChooser.APPROVE_OPTION) {
                     if (chooser.getSelectedFile() != null) {
