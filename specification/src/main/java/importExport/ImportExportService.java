@@ -24,11 +24,12 @@ public abstract class ImportExportService {
         try {
             for (File file : files) {
                 List<Entity> list1 = loadDatabase(file);
-                System.out.println(list1 + "loadDatabase");
                 list.addAll(list1);
             }
             Database.getInstance().setEntityList(list);
-            System.out.println(Database.getInstance().getEntityList()+ " listaaaaa broj entiteta" + Database.getInstance().getEntityList().size());
+            Database.getInstance().loadIds();
+            System.out.println( "Ucitano entiteta: "+Database.getInstance().getEntityList().size());
+            System.out.println(Database.getInstance().getAllIds());
         }catch (Exception e){
             e.printStackTrace();
             return false;

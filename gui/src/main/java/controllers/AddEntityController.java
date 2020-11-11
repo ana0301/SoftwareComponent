@@ -16,8 +16,6 @@ public class AddEntityController implements ActionListener {
         if(addUpdateDialog.getMode() == 0){
             List<String[]> toSend = addUpdateDialog.getFields();
 
-            for(int i = 0; i < toSend.get(2).length; i ++) System.out.println(toSend.get(1)[i] + "---> in controller");
-
             try{
                 MainFrame.getInstance().getCrudService().addEntity(toSend.get(0)[0], toSend.get(1)[0],
                         toSend.get(2), toSend.get(3));
