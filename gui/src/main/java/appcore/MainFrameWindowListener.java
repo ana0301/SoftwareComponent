@@ -25,8 +25,17 @@ public class MainFrameWindowListener extends WindowAdapter {
             boolean written = false;
             int jOptionPane = JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Do you want to change file?","Choose",JOptionPane.YES_NO_OPTION);
             String num = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter a number of entity you want to save in file");
-            try {
-                int number = Integer.parseInt(num);
+            boolean correct = false;
+            int number = 0;
+            while(!correct) {
+                try {
+                    number = Integer.parseInt(num);
+                    correct = true;
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(MainFrame.getInstance(), "You must enter a number", "Error", JOptionPane.ERROR_MESSAGE);
+                    num = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter a number of entity you want to save in file");
+                }
+            }
                 if (jOptionPane == JOptionPane.YES_OPTION) {
                     //dodati da odabere putanju
                     int choose = chooser.showSaveDialog(MainFrame.getInstance());
@@ -34,23 +43,19 @@ public class MainFrameWindowListener extends WindowAdapter {
                         // if(chooser.getSelectedFile())
                     }
                     String name = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter name of file with correct extension");
-                    written = MainFrame.getInstance().getImportExportService().saveInNewFiles(number, name);
+                    try {
+                        written = MainFrame.getInstance().getImportExportService().saveInNewFiles(number, name);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }else{
                      written = MainFrame.getInstance().getImportExportService().saveInOldFiles(number);
                 }
                 if (written)
                     JOptionPane.showMessageDialog(MainFrame.getInstance(), "Data has been written successfully!");
                 else JOptionPane.showMessageDialog(MainFrame.getInstance(), "Mistake");
-            }catch(Exception ex) {
-            JOptionPane.showMessageDialog(MainFrame.getInstance(),"You must enter a number", "Error",JOptionPane.ERROR_MESSAGE);
-        }
-
-
-
-
-
-
-        }else if(o == JOptionPane.NO_OPTION) System.exit(0);
+            }
+        else if(o == JOptionPane.NO_OPTION) System.exit(0);
         else this.windowOpened(e);
     }
 
@@ -75,11 +80,13 @@ public class MainFrameWindowListener extends WindowAdapter {
                         files.add(chooser.getSelectedFile());
                    }
                    else {
-                       for(File file: chooser.getSelectedFile().listFiles())
-                       {
-                           if(file.isDirectory()) JOptionPane.showMessageDialog(MainFrame.getInstance(),"You have chosen folder with another folder in it");
-                       }
-                       files= Arrays.asList(chooser.getSelectedFile().listFiles());
+                       if(chooser.getSelectedFile().listFiles() != null) {
+                           for (File file : chooser.getSelectedFile().listFiles()) {
+                               if (file.isDirectory())
+                                   JOptionPane.showMessageDialog(MainFrame.getInstance(), "You have chosen folder with another folder in it");
+                           }
+                           files = Arrays.asList(chooser.getSelectedFile().listFiles());
+                       }else JOptionPane.showMessageDialog(MainFrame.getInstance(),"Need to choose some file");
                    }
                    boolean done = MainFrame.getInstance().getImportExportService().load(files);
                    if(done) JOptionPane.showMessageDialog(MainFrame.getInstance(),"Data load successfully!");

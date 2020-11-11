@@ -2,9 +2,6 @@ import exceptions.UnsupportedImplementation;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.Entity;
-import model.SimpleType;
-import model.Type;
-
 import java.io.*;
 import java.security.spec.ECField;
 import java.util.*;
@@ -43,6 +40,7 @@ public class ImportExportCustom extends ImportExportService {
                                 if (!line.equals(">")) {
                                     List<String> kVV = Arrays.asList(line.split("->"));
                                     //ugnjezdeni entitet
+                                    System.err.println(kVV.get(1));
                                     if (kVV.get(1).equals("<")) {
                                         Entity nestedEntity = new Entity();
                                         line = reader.readLine();
@@ -73,7 +71,7 @@ public class ImportExportCustom extends ImportExportService {
                                     } else {
                                         //property
                                         System.out.println(" usao u regular entitydata");
-                                        entityData.put(kVV.get(0), kVV.get(1));
+                                        entityData.put(kVV.get(0), (String) kVV.get(1));
                                     }
                                 }
                                 line = reader.readLine();
@@ -108,7 +106,7 @@ public class ImportExportCustom extends ImportExportService {
                     writer.write("entityData->#\n");
                     for(Map.Entry<String,Object> property : entity.getEntityData().entrySet()){
                         if(property.getValue() instanceof String){
-                            writer.write(property.getKey()+"->"+property.getValue()+"\n");
+                            writer.write(property.getKey()+"->"+((String) property.getValue())+"\n");
                         }else{
                             Entity e = (Entity) property.getValue();
                             writer.write(property.getKey()+"-><\n");
@@ -117,7 +115,7 @@ public class ImportExportCustom extends ImportExportService {
                             if(!entity.getEntityData().isEmpty()) {
                                 writer.write("entityData->#\n");
                                 for (Map.Entry<String, Object> nestedProp : e.getEntityData().entrySet()) {
-                                    writer.write(nestedProp.getKey()+"->"+(nestedProp.getValue())+"\n");
+                                    writer.write(nestedProp.getKey()+"->"+((String) nestedProp.getValue())+"\n");
                                 }
                                 writer.write("#\n");
                             }

@@ -63,28 +63,34 @@ public abstract class ImportExportService {
         int counterNewFile = 1;
         int counterOldFile = 0;
         String path = Database.getInstance().getCurrentFiles().get(0).getAbsolutePath();
-        String folderPath = path.substring(-path.length());
+        String folderPath = path.substring(0,path.length()-Database.getInstance().getCurrentFiles().get(0).getName().length());
         System.out.println(folderPath);
+        boolean old = true;
         List<Entity> entityToWrite = new ArrayList<>();
         try {
             for (Entity entity : Database.getInstance().getEntityList()) {
-                if (counter != numberOfEntity) {
-                    entityToWrite.add(entity);
-                    counter++;
-                } else {
+               if(counter == numberOfEntity){
                     if(counterOldFile!= Database.getInstance().getCurrentFiles().size()) {
                         saveDatabase(Database.getInstance().getCurrentFiles().get(counterOldFile), entityToWrite);
                         counterOldFile++;
                     }else{
-                        File file = createDatabase("new"+counterNewFile);
+                        File file = createDatabase(folderPath+"new"+counterNewFile+".json");
                         saveDatabase(file,entityToWrite);
                         counterNewFile++;
+                        old = false;
                     }
-                    counter = 1;
-                    entityToWrite.clear();
-                    entityToWrite.add(entity);
+                   counter = 0;
+                   entityToWrite.clear();
                 }
+               entityToWrite.add(entity);
+               counter++;
             }
+            if(old)  saveDatabase(Database.getInstance().getCurrentFiles().get(counterOldFile), entityToWrite);
+            else {
+                File file = createDatabase(folderPath+"new"+counterNewFile+".json");
+                saveDatabase(file,entityToWrite);
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             return false;
