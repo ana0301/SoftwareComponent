@@ -2,7 +2,6 @@ package controllers;
 
 import appcore.MainFrame;
 import model.Entity;
-import service.FilterSortService;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -55,6 +55,7 @@ public class DataView extends JPanel{
         buttonPanel.add(updateButton);
         buttonPanel.add(filterButton);
         buttonPanel.add(sortButton);
+        buttonPanel.add(showAllDataButton);
 
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
