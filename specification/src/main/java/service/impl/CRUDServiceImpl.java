@@ -13,13 +13,14 @@ import java.util.Map;
 
 public class CRUDServiceImpl implements CRUDService {
 
-    private Map<String, Type> mapData(String[] keys, String[] values){
+    private Map<String, Object> mapData(String[] keys, String[] values){
         //TODO exception kada duzina nizova keys i values nije ista
-        Map<String, Type> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
         for (int i = 0; i < keys.length; i++){
             if(keys[i].equalsIgnoreCase("")) continue;
-            Type value = new SimpleType(values[i]);
-            data.put(keys[i], value);
+            data.put(keys[i], values[i]);
+            System.out.println(keys[i] + " ---> key in crud");
+            System.out.println(values[i] + " ---> value in crud");
         }
         return data;
     }
@@ -32,10 +33,9 @@ public class CRUDServiceImpl implements CRUDService {
             id = Database.getInstance().getUniqueId();
         }
 
-       // Entity e = new Entity(title, id, mapData(keys, values));
+        Entity e = new Entity(title, id, mapData(keys, values));
 
-        //return Database.getInstance().addEntity(e);
-        return false;
+        return Database.getInstance().addEntity(e);
     }
 
     @Override

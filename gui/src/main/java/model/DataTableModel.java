@@ -15,6 +15,9 @@ public class DataTableModel extends DefaultTableModel {
     }
 
     public void updateTableModel(List<Entity> entities){
+        for (int i = 0; i < getRowCount(); i++) {
+            removeRow(i);
+        }
         for (Entity e: entities) {
             String[] rowData = {e.getId(), e.getTitle(), e.getEntityData().toString()};
             addRow(rowData);

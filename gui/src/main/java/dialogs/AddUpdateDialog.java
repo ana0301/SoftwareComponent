@@ -68,17 +68,25 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
         String[] title = {titleField.getText()};
         toReturn.add(title);
         String[] tokens = dataTextArea.getText().split("\n");
-        String keys[] = new String[]{};
-        String values[] = new String[]{};
+        String keys[] = tokens.clone();
+        String values[] = tokens.clone();
         for (int i = 0; i < tokens.length; i++) {
             String delim = null;
             if(tokens[i].contains(":")) delim = ":";
             if(tokens[i].contains("-")) delim = "-";
             String[] token = tokens[i].split(delim);
+            for(int j  =0; j < token.length; j++){
+                System.out.println(token[j] + Integer.toString(j));
+            }
+            System.out.println(token[0] + " --- > token 0");
             keys[i] = token[0].trim();
+            System.out.println(keys[i] + " --- > key ");
             values[i] = token[1].trim();
+            //System.out.println(keys[i]);
+            //System.out.println(values[i]);
         }
         toReturn.add(keys);
+        for (int i = 0; i < keys.length; i++) System.out.println(keys[i] + "----> after add");
         toReturn.add(values);
         return toReturn;
     }
