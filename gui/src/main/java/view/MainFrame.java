@@ -30,6 +30,7 @@ public class MainFrame extends JFrame {
     private JButton filterButton;
     private JButton sortButton;
     private JButton showAllDataButton;
+    private boolean hasAnything = false;
 
     private ImportExportService importExportService;
     private MainFrame() {
@@ -53,6 +54,7 @@ public class MainFrame extends JFrame {
         dataTableView = new DataTableView(dataTableModel);
         dataView.setLayout(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane(dataTableView);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         dataView.add(scrollPane, BorderLayout.CENTER);
 
         initButtonPanel(dataView);
@@ -128,5 +130,23 @@ public class MainFrame extends JFrame {
         buttonPanel.add(showAllDataButton);
 
         panel.add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    public boolean isHasAnything() {
+        return hasAnything;
+    }
+
+    public void setHasAnything(boolean hasAnything) {
+        this.hasAnything = hasAnything;
+    }
+    public void setButtonsEnabled(){
+        addButton.setEnabled(false);
+        addNestedButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+        updateButton.setEnabled(false);
+        filterButton.setEnabled(false);
+        sortButton.setEnabled(false);
+        showAllDataButton.setEnabled(false);
+
     }
 }

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AddUpdateDialog extends JDialog implements ActionListener {
@@ -58,7 +59,6 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
         add(mainPanel, BorderLayout.CENTER);
         add(commandPanel, BorderLayout.SOUTH);
 
-        setVisible(true);
     }
 
     public List<String[]> getFields(){
@@ -74,6 +74,7 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
             String delim = null;
             if(tokens[i].contains(":")) delim = ":";
             if(tokens[i].contains("-")) delim = "-";
+            if(tokens[i].contains("-")) delim = "=";
             String[] token = tokens[i].split(delim);
             for(int j  =0; j < token.length; j++){
                 System.out.println(token[j] + Integer.toString(j));
@@ -90,10 +91,17 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
         return toReturn;
     }
 
-    public void setFields(String[] args){
-        idField.setText(args[0]);
-        titleField.setText(args[1]);
-        dataTextArea.setText(args[2]);
+    public void setFields(String id, String title, String data){
+        idField.setText(id);
+        titleField.setText(title);
+        List<String> props = Arrays.asList(data.split(","));
+        String toSend = "";
+        for(String p : props){
+            p = p.replaceAll("[^a-zA-Z0-9=]+","");
+          toSend = toSend.concat(p+"\n");
+        }
+
+        dataTextArea.setText(toSend);
     }
 
     public int getMode() {

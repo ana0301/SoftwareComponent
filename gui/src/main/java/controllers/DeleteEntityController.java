@@ -1,7 +1,6 @@
 package controllers;
 
 
-import model.Entity;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -28,7 +27,7 @@ public class DeleteEntityController implements ActionListener {
 
     }
     public void deleteRows(int[] selectedRows) {
-        List<String> entityList = MainFrame.getInstance().getDataTableModel().entitiesToDelete(selectedRows);
+        List<String> entityList = MainFrame.getInstance().getDataTableModel().entitiesIds(selectedRows);
         MainFrame.getInstance().getCrudService().deleteEntity(entityList);
         MainFrame.getInstance().getDataTableModel().updateTableModel(MainFrame.getInstance().getFilterSortService().getAllData());
        /* for(int i = 0; i < selectedRows.length;i++){

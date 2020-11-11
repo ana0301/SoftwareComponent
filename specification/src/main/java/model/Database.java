@@ -101,7 +101,6 @@ public class Database {
     public boolean loadIds(){
         for(Entity entity: entityList){
             if(allIds.contains(entity.getId())) {
-                allIds.clear();
                 System.out.println("POGRESNA BAZA");
                 return false;
             }
@@ -110,11 +109,10 @@ public class Database {
                 if(nested.getValue() instanceof Entity){
                     Entity e = (Entity) nested.getValue();
                     if(allIds.contains(e.getId())) {
-                        allIds.clear();
                         System.out.println("POGRESNA BAZA");
                         return false;
                     }
-                    allIds.add(entity.getId());
+                    allIds.add(e.getId());
                 }
             }
         }

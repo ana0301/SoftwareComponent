@@ -19,31 +19,18 @@ public class DataTableModel extends DefaultTableModel {
     }
 
     public void updateTableModel(List<Entity> entities){
-        for(int i = 0; i < getRowCount(); i++){
-            removeRow(i);
-        }
-        setEntities(entities);
+        while (getRowCount() != 0) removeRow(0);
         for (Entity e: entities) {
             Object[] rowData = {e.getId(), e.getTitle(), e.getEntityData()};
             addRow(rowData);
         }
     }
 
-    public List<Entity> entitiesToDelete(int[] selectedRows) {
-        List<Entity> entities = new ArrayList<>();
+    public List<String> entitiesIds(int[] selectedRows) {
+        List<String> entities = new ArrayList<>();
         for(int i = 0; i < selectedRows.length;i++){
-            Entity entity = new Entity();
-            for(int j = 0; j < getColumnCount();j++){
-                Object value = getValueAt(i,j);
-                if(getColumnName(j).equals("ID"))
-                    entity.setId((String) value);
-                else if(getColumnName(j).equals("Title")){
-                    entity.setTitle((String) value);
-                }else if(getColumnName(j).equals("Data")){
-                    entity.setEntityData((Map<String, Object>) value);
-                }
-            }
-            entities.add(entity);
+            Object value = getValueAt(selectedRows[i],0);
+            entities.add((String) value);
         }
         return entities;
     }
