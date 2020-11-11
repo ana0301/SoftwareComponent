@@ -47,9 +47,9 @@ public class CRUDServiceImpl implements CRUDService {
             childId = Database.getInstance().getUniqueId();
         }
 
-        //Type e = new Entity(title, childId, mapData(keys,values));
+        Entity e = new Entity(title, childId, mapData(keys,values));
 
-        //Database.getInstance().getEntityById(parentId).getEntityData().put(parentKey, e);
+        Database.getInstance().getEntityById(parentId).getEntityData().put(parentKey, e);
 
         return true;
     }

@@ -4,6 +4,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import exceptions.UnsupportedImplementation;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
+import model.Database;
 import model.Entity;
 import java.io.*;
 import java.util.ArrayList;

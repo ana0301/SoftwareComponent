@@ -24,7 +24,7 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
 
     private int mode = 1;
 
-    public AddUpdateDialog(JFrame owner, String title, boolean modal, String[] entityData) {
+    public AddUpdateDialog(JFrame owner, String title, boolean modal) {
         super(owner, title, modal);
         setMode(AddUpdateDialog.CANCEL);
         this.setMinimumSize(new Dimension(500,500));
