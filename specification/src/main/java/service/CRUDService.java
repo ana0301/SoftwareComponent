@@ -10,5 +10,5 @@ public interface CRUDService {
     boolean addEntity(String id, String title, String[] keys, String[] values) throws IdNotUnique;
     boolean addNestedEntity(String parentId, String parentKey ,String title, String childId, String[] keys, String[] values) throws IdNotUnique;
     boolean updateEntity(String oldId, String title, String newId, String[] keys, String[] values) throws IdNotUnique;
-    boolean deleteEntity(List<Entity> toDelete);
+    boolean deleteEntity(String[] ids);
 }

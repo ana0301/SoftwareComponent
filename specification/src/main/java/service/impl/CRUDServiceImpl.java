@@ -73,11 +73,10 @@ public class CRUDServiceImpl implements CRUDService {
     }
 
     @Override
-    public boolean deleteEntity(List<Entity> toDelete) {
-        for (Entity e: toDelete) {
-            if (!Database.getInstance().removeEntity(e.getId())) return false;
+    public boolean deleteEntity(String[] ids) {
+        for (int i = 0; i < ids.length; i++){
+            return Database.getInstance().removeEntity(ids[i]);
         }
-
         return true;
     }
 }
