@@ -27,7 +27,7 @@ public class CRUDServiceImpl implements CRUDService {
 
     @Override
     public boolean addEntity(String id, String title, String[] keys, String[] values) throws IdNotUnique {
-        if (id != null){
+        if (id != null && !id.equals("")){
             if(!Database.getInstance().isUniqueId(id)) throw new IdNotUnique();
         }else{
             id = Database.getInstance().getUniqueId();
@@ -40,8 +40,7 @@ public class CRUDServiceImpl implements CRUDService {
 
     @Override
     public boolean addNestedEntity(String parentId, String parentKey, String title, String childId, String[] keys, String[] values) throws IdNotUnique {
-        //TODO exception da parent entity nije izabran
-        if (childId != null){
+        if (childId != null && !childId.equals("")){
             if(!Database.getInstance().isUniqueId(childId)) throw new IdNotUnique();
         }else{
             childId = Database.getInstance().getUniqueId();
@@ -66,10 +65,9 @@ public class CRUDServiceImpl implements CRUDService {
 
         Database.getInstance().removeEntity(oldId);
 
-        //Entity e = new Entity(title, newId, mapData(keys, values));
+        Entity e = new Entity(title, newId, mapData(keys, values));
 
-        //return Database.getInstance().addEntity(e);
-        return false;
+        return Database.getInstance().addEntity(e);
     }
 
     @Override

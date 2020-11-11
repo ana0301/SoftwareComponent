@@ -74,6 +74,7 @@ public class FilterController implements ActionListener {
                     if (toSend.get(i)[2].equals("ENDS_WITH") && i > 0)
                         result = MainFrame.getInstance().getFilterSortService().filterByKey(result,FilterOperator.ENDS_WITH, toSend.get(i)[3]);
                 }else if(toSend.get(i)[0].equals("VALUE")){
+                    System.out.println(toSend.get(i)[1]);
                     if (toSend.get(i)[2].equals("")) continue;
                     if (toSend.get(i)[2].equals("EQUALS") && i == 0)
                         result.addAll(MainFrame.getInstance().getFilterSortService().filterByValue(FilterOperator.EQUALS, toSend.get(i)[1] ,toSend.get(i)[3]));

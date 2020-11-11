@@ -19,12 +19,12 @@ public class SortController implements ActionListener {
             String[] toSend = sd.getFields();
             List<Entity> result = new ArrayList<>();
             if(toSend[0].equals("ID")){
-                if (toSend[2].equals("ASCENDING"))result.addAll(MainFrame.getInstance().getFilterSortService().sort(
+                if (toSend[2].equals("ASCENDING")) result = MainFrame.getInstance().getFilterSortService().sort(
                         MainFrame.getInstance().getDataTableModel().getEntities(), SortOrder.ASC, SortTarget.ID
-                ));
-                if (toSend[2].equals("DESCENDING"))result.addAll(MainFrame.getInstance().getFilterSortService().sort(
+                );
+                if (toSend[2].equals("DESCENDING"))result = MainFrame.getInstance().getFilterSortService().sort(
                         MainFrame.getInstance().getDataTableModel().getEntities(), SortOrder.DESC, SortTarget.ID
-                ));
+                );
             }
             if (toSend[0].equals("NAME")){
                 if (toSend[2].equals("ASCENDING"))result.addAll(MainFrame.getInstance().getFilterSortService().sort(

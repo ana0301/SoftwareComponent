@@ -21,7 +21,7 @@ public class MainFrameWindowListener extends WindowAdapter {
                     "Warning", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
             JFileChooser chooser = new JFileChooser();
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            chooser.setMultiSelectionEnabled(true);
+            chooser.setMultiSelectionEnabled(false);
             if (o == JOptionPane.YES_OPTION) {
                 boolean oldFiles = true;
                 boolean written = false;
@@ -70,7 +70,7 @@ public class MainFrameWindowListener extends WindowAdapter {
                 "Welcome", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        chooser.setMultiSelectionEnabled(true);
+        chooser.setMultiSelectionEnabled(false);
 
         if (o == JOptionPane.YES_OPTION) {
             MainFrame.getInstance().setHasAnything(true);
@@ -82,7 +82,7 @@ public class MainFrameWindowListener extends WindowAdapter {
                     List<File> files = new ArrayList<>();
                     if (chooser.getSelectedFile().isFile()) {
                         files.add(chooser.getSelectedFile());
-                    } else {
+                    } else if(chooser.getSelectedFile().isDirectory()) {
                         if (chooser.getSelectedFile().listFiles() != null) {
                             for (File file : chooser.getSelectedFile().listFiles()) {
                                 if (file.isDirectory())
@@ -90,6 +90,9 @@ public class MainFrameWindowListener extends WindowAdapter {
                             }
                             files = Arrays.asList(chooser.getSelectedFile().listFiles());
                         } else JOptionPane.showMessageDialog(MainFrame.getInstance(), "Need to choose some file");
+                    }else if(chooser.getSelectedFiles() != null){
+                        System.out.println("dsadasdasdasdasdsadasd");
+                        files = Arrays.asList(chooser.getSelectedFiles());
                     }
                     boolean done = MainFrame.getInstance().getImportExportService().load(files);
                     if (done) JOptionPane.showMessageDialog(MainFrame.getInstance(), "Data load successfully!");

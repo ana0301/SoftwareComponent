@@ -117,8 +117,8 @@ public class FilterSortServiceImpl implements FilterSortService {
     public List<Entity> filterByValue(List<Entity> entities, FilterOperator filterOperator, String key, String target) {
         List<Entity> returnList = new ArrayList<>();
         for (Entity e : entities) {
-            if(e.getEntityData().containsKey(key) && e.getEntityData().get(key) instanceof SimpleType) {
-                String value = ((SimpleType)e.getEntityData().get(key)).getProperty();
+            if(e.getEntityData().containsKey(key) && e.getEntityData().get(key) instanceof String) {
+                String value = e.getEntityData().get(key).toString();
                 switch (filterOperator) {
                     case STARTS_WITH:
                         if (value.startsWith(target)) returnList.add(e);
@@ -147,22 +147,23 @@ public class FilterSortServiceImpl implements FilterSortService {
 
     @Override
     public List<Entity> sort(List<Entity> entities, SortOrder sortOrder, SortTarget sortTarget) {
+        List<Entity> toReturn = new ArrayList<>();
         switch (sortTarget){
             case ID:
                 if (sortOrder == SortOrder.ASC)
-                    entities = entities.stream().sorted(Comparator.comparing(Entity::getId)).collect(Collectors.toList());
-                else entities = entities.stream().sorted(Comparator.comparing(Entity::getId).reversed()).collect(Collectors.toList());
+                    toReturn = entities.stream().sorted(Comparator.comparing(Entity::getId)).collect(Collectors.toList());
+                else toReturn = entities.stream().sorted(Comparator.comparing(Entity::getId).reversed()).collect(Collectors.toList());
                 break;
             case TITLE:
                 if (sortOrder == SortOrder.ASC)
-                    entities = entities.stream().sorted(Comparator.comparing(Entity::getTitle)).collect(Collectors.toList());
-                else entities = entities.stream().sorted(Comparator.comparing(Entity::getTitle).reversed()).collect(Collectors.toList());
+                    toReturn = entities.stream().sorted(Comparator.comparing(Entity::getTitle)).collect(Collectors.toList());
+                else toReturn = entities.stream().sorted(Comparator.comparing(Entity::getTitle).reversed()).collect(Collectors.toList());
                 break;
             case KEY:
                 //TODO sort by key
                 break;
             default: break;
         }
-        return entities;
+        return toReturn;
     }
 }
