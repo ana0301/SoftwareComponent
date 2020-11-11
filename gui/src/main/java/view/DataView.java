@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DataView extends JPanel{
+    /*
 
     private DataTableView dataTableView;
     private JPanel buttonPanel;
@@ -59,4 +60,6 @@ public class DataView extends JPanel{
 
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
+
+     */
 }

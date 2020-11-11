@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class DataTableView extends JTable {
 
-    public DataTableView(){
-        super(new DataTableModel());
+    public DataTableView(DataTableModel dataTableModel){
+        super(dataTableModel);
     }
 }
