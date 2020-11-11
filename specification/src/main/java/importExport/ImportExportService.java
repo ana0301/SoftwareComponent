@@ -28,7 +28,7 @@ public abstract class ImportExportService {
                 list.addAll(list1);
             }
             Database.getInstance().setEntityList(list);
-            System.out.println(Database.getInstance().getEntityList()+ " listaaaaa");
+            System.out.println(Database.getInstance().getEntityList()+ " listaaaaa broj entiteta" + Database.getInstance().getEntityList().size());
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -36,21 +36,29 @@ public abstract class ImportExportService {
         Database.getInstance().setCurrentFiles(files);
         return true;
     }
-    public boolean saveInNewFiles(int numberOfEntity,String nameFile) throws IOException {
+    public boolean saveInNewFiles(String path,int numberOfEntity,String nameFile) throws IOException {
         int counter = 0;
         int counterFile = 1;
         List<Entity> entityToWrite = new ArrayList<>();
         try {
             for (Entity entity : Database.getInstance().getEntityList()) {
-                if (counter != numberOfEntity) {
-                    entityToWrite.add(entity);
-                } else {
-                    File file = createDatabase(nameFile + counterFile);
+                if (counter == numberOfEntity) {
+                    File file = createDatabase(path+"\\"+nameFile + counterFile+".json");
+                    System.out.println(file.getAbsolutePath());
                     saveDatabase(file, entityToWrite);
                     counter = 0;
                     counterFile++;
                     entityToWrite.clear();
                 }
+                entityToWrite.add(entity);
+                counter++;
+            }
+            File file = createDatabase(path+"\\"+nameFile + counterFile+".json");
+            System.out.println(file.getAbsolutePath());
+            saveDatabase(file, entityToWrite);
+            entityToWrite.clear();
+            for(File filee: Database.getInstance().getCurrentFiles()){
+                filee.delete();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -64,9 +72,9 @@ public abstract class ImportExportService {
         int counterOldFile = 0;
         String path = Database.getInstance().getCurrentFiles().get(0).getAbsolutePath();
         String folderPath = path.substring(0,path.length()-Database.getInstance().getCurrentFiles().get(0).getName().length());
-        System.out.println(folderPath);
         boolean old = true;
         List<Entity> entityToWrite = new ArrayList<>();
+        System.err.println(Database.getInstance().getEntityList().size() + " toliko entiteta");
         try {
             for (Entity entity : Database.getInstance().getEntityList()) {
                if(counter == numberOfEntity){
@@ -82,13 +90,23 @@ public abstract class ImportExportService {
                    counter = 0;
                    entityToWrite.clear();
                 }
-               entityToWrite.add(entity);
-               counter++;
+                entityToWrite.add(entity);
+                counter++;
             }
-            if(old)  saveDatabase(Database.getInstance().getCurrentFiles().get(counterOldFile), entityToWrite);
+            if(old) {
+                saveDatabase(Database.getInstance().getCurrentFiles().get(counterOldFile), entityToWrite);
+                counterOldFile++;
+            }
             else {
                 File file = createDatabase(folderPath+"new"+counterNewFile+".json");
                 saveDatabase(file,entityToWrite);
+            }
+            System.err.println(counterOldFile);
+            if(counterOldFile < Database.getInstance().getCurrentFiles().size()){
+                while(counterOldFile < Database.getInstance().getCurrentFiles().size()){
+                   Database.getInstance().getCurrentFiles().get(counterOldFile).delete();
+                    counterOldFile++;
+                }
             }
 
         }catch (Exception e){

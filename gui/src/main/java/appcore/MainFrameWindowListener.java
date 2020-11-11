@@ -1,9 +1,7 @@
 package appcore;
 
-import exceptions.UnsupportedImplementation;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -40,14 +38,17 @@ public class MainFrameWindowListener extends WindowAdapter {
                     //dodati da odabere putanju
                     int choose = chooser.showSaveDialog(MainFrame.getInstance());
                     if (choose == JFileChooser.APPROVE_OPTION) {
-                        // if(chooser.getSelectedFile())
+                          if(chooser.getSelectedFile() != null){
+                              String path = chooser.getSelectedFile().getAbsolutePath();
+                              String name = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter name of file with correct extension");
+                              try {
+                                  written = MainFrame.getInstance().getImportExportService().saveInNewFiles(path,number, name);
+                              } catch (IOException ioException) {
+                                  ioException.printStackTrace();
+                              }
+                          }
                     }
-                    String name = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter name of file with correct extension");
-                    try {
-                        written = MainFrame.getInstance().getImportExportService().saveInNewFiles(number, name);
-                    } catch (IOException ioException) {
-                        ioException.printStackTrace();
-                    }
+
                 }else{
                      written = MainFrame.getInstance().getImportExportService().saveInOldFiles(number);
                 }
@@ -75,7 +76,7 @@ public class MainFrameWindowListener extends WindowAdapter {
             if(returnVal == JFileChooser.APPROVE_OPTION){
                 //TODO Poziv import metode
                if(chooser.getSelectedFile()!= null) {
-                   List<File> files = new ArrayList<File>();
+                   List<File> files = new ArrayList<>();
                    if (chooser.getSelectedFile().isFile()) {
                         files.add(chooser.getSelectedFile());
                    }
