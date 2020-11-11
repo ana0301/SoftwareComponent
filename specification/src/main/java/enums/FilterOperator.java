@@ -1,10 +1,10 @@
 package enums;
 
-public enum CompareOperator {
+public enum FilterOperator {
     STARTS_WITH,
     ENDS_WITH,
     CONTAINS,
-    EQUAL_TO,
+    EQUALS,
     LESS_THAN,
     GREATER_THAN
 }

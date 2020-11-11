@@ -40,8 +40,26 @@ public class Database {
         return lastUnique.toString();
     }
 
+    public boolean isUniqueId(String id){
+        for (String i: allIds) {
+            if (i.equalsIgnoreCase(id)) return false;
+        }
+        return true;
+    }
+
+    public List<Entity> getEntityList() {
+        return entityList;
+    }
+
     public void setEntityList(List<Entity> entityList) {
         this.entityList = entityList;
+    }
+
+    public Entity getEntityById(String id){
+        for (Entity e : entityList) {
+            if (e.getId().equalsIgnoreCase(id)) return e;
+        }
+        return null;
     }
 
     public boolean addEntity(Entity e){

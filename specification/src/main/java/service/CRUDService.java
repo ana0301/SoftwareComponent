@@ -8,8 +8,8 @@ import java.util.Map;
 
 public interface CRUDService {
 
-    boolean addEntity(String title, String id, Map<String, Object> data) throws IdNotUnique;
-    boolean addNestedEntity(String parentId, String title, String childId, Map<String, Object> data) throws IdNotUnique;
-    boolean updateEntity(String oldId, String title, String newId, Map<String, Object> data) throws IdNotUnique;
-    boolean deleteEntity(List<Entity> resultSet);
+    boolean addEntity(String title, String id, String[] keys, String[] values) throws IdNotUnique;
+    boolean addNestedEntity(String parentId, String parentKey ,String title, String childId, String[] keys, String[] values) throws IdNotUnique;
+    boolean updateEntity(String oldId, String title, String newId, String[] keys, String[] values) throws IdNotUnique;
+    boolean deleteEntity(List<Entity> toDelete);
 }
