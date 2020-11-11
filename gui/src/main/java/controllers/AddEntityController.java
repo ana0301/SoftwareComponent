@@ -5,6 +5,7 @@ import dialogs.AddUpdateDialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class AddEntityController implements ActionListener {
     @Override
@@ -12,14 +13,15 @@ public class AddEntityController implements ActionListener {
 
         AddUpdateDialog addUpdateDialog = new AddUpdateDialog(MainFrame.getInstance(), "Add Entity", true, null);
         if(addUpdateDialog.getMode() == 0){
-            String[] fields = addUpdateDialog.getFields();
-            String toParse = fields[2];
-
-
+            List<String[]> toSend = addUpdateDialog.getFields();
             try{
-                //MainFrame.getInstance().getCrudService().addEntity();
+                MainFrame.getInstance().getCrudService().addEntity(toSend.get(0)[0], toSend.get(1)[0],
+                        toSend.get(2), toSend.get(3));
+                MainFrame.getInstance().getDataTableModel().updateTableModel(
+                        MainFrame.getInstance().getFilterSortService().getAllData()
+                );
             }catch (Exception exception){
-
+                //TODO exception
             }
         }else{
 

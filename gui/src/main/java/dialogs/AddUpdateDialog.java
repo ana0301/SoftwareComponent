@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddUpdateDialog extends JDialog implements ActionListener {
     private JLabel titleLabel;
@@ -59,8 +61,26 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
         setVisible(true);
     }
 
-    public String[] getFields(){
-        return new String[]{idField.getText(), titleField.getText(), dataTextArea.getText()};
+    public List<String[]> getFields(){
+        List<String[]> toReturn = new ArrayList<>();
+        String[] id = {idField.getText()};
+        toReturn.add(id);
+        String[] title = {titleField.getText()};
+        toReturn.add(title);
+        String[] tokens = dataTextArea.getText().split("\n");
+        String keys[] = new String[]{};
+        String values[] = new String[]{};
+        for (int i = 0; i < tokens.length; i++) {
+            String delim = null;
+            if(tokens[i].contains(":")) delim = ":";
+            if(tokens[i].contains("-")) delim = "-";
+            String[] token = tokens[i].split(delim);
+            keys[i] = token[0].trim();
+            values[i] = token[1].trim();
+        }
+        toReturn.add(keys);
+        toReturn.add(values);
+        return toReturn;
     }
 
     public void setFields(String[] args){
