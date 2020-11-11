@@ -136,6 +136,13 @@ public class ImportExportCustom extends ImportExportService {
     }
 
     public File createDatabase(String namePath) {
+        try {
+            File f = new File(namePath+".txt");
+            f.createNewFile();
+            return f;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

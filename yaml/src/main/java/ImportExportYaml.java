@@ -129,13 +129,9 @@ public class ImportExportYaml extends ImportExportService {
     @Override
     public File createDatabase(String namePath) {
         try {
-            if(namePath.contains(".yaml")) {
-                File f = new File(namePath);
-                f.createNewFile();
-                return f;
-            }else {
-                System.out.println("Pogresna ekstenzija");
-            }
+            File f = new File(namePath+".yaml");
+            f.createNewFile();
+            return f;
         }catch (Exception e){
             e.printStackTrace();
         }

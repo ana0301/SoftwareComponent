@@ -261,13 +261,9 @@ public class ImportExportJson extends ImportExportService {
     @Override
     public File createDatabase(String namePath) {
         try {
-            if (namePath.contains(".json")) {
-                File f = new File(namePath);
-                f.createNewFile();
-                return f;
-            } else {
-                System.out.println("Pogresna ekstenzija");
-            }
+            File f = new File(namePath+".json");
+            f.createNewFile();
+            return f;
         } catch (Exception e) {
             e.printStackTrace();
         }

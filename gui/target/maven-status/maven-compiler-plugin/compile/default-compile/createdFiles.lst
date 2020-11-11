@@ -5,6 +5,7 @@ appcore\AppCore.class
 model\DataTableModel.class
 controllers\DeleteEntityController.class
 view\DataTableView.class
+controllers\ShowAllDataController.class
 dialogs\AddUpdateDialog.class
 view\DataView.class
 controllers\FilterController.class

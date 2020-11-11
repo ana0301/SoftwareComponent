@@ -53,7 +53,7 @@ public abstract class ImportExportService {
                 entityToWrite.add(entity);
                 counter++;
             }
-            File file = createDatabase(path+"\\"+nameFile + counterFile+".json");
+            File file = createDatabase(path+"\\"+nameFile + counterFile);
             System.out.println(file.getAbsolutePath());
             saveDatabase(file, entityToWrite);
             entityToWrite.clear();
@@ -82,7 +82,7 @@ public abstract class ImportExportService {
                         saveDatabase(Database.getInstance().getCurrentFiles().get(counterOldFile), entityToWrite);
                         counterOldFile++;
                     }else{
-                        File file = createDatabase(folderPath+"new"+counterNewFile+".json");
+                        File file = createDatabase(folderPath+"new"+counterNewFile);
                         saveDatabase(file,entityToWrite);
                         counterNewFile++;
                         old = false;
@@ -98,7 +98,7 @@ public abstract class ImportExportService {
                 counterOldFile++;
             }
             else {
-                File file = createDatabase(folderPath+"new"+counterNewFile+".json");
+                File file = createDatabase(folderPath+"new"+counterNewFile);
                 saveDatabase(file,entityToWrite);
             }
             System.err.println(counterOldFile);
@@ -114,5 +114,13 @@ public abstract class ImportExportService {
             return false;
         }
         return true;
+    }
+
+    public boolean createNewDatabase(String path){
+            File file = createDatabase(path);
+            if(file != null)
+                Database.getInstance().getCurrentFiles().add(file);
+            else return false;
+            return true;
     }
 }

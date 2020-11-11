@@ -22,6 +22,7 @@ public class Database {
         this.lastUnique = -1;
         this.entityList =  new ArrayList<>();
         this.allIds = new ArrayList<>();
+        this.currentFiles = new ArrayList<>();
     }
 
     public String getUniqueId(){
