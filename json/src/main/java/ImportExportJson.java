@@ -1,11 +1,10 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.internal.LinkedTreeMap;
+import exceptions.UnsupportedImplementation;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.Entity;
-import model.SimpleType;
-import model.Type;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +17,11 @@ public class ImportExportJson extends ImportExportService {
     }
 
     @Override
-    public List<Entity> loadDatabase(File file) throws IOException {
+    public List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation {
         //TODO proveriti da li je unsupported implementation
         //TODO na kraju celu listu dodati u Database
         //TODO svaki id (i ugnjezdene!) dodati u listu id-jeva u Database
+        if(!file.getAbsolutePath().endsWith(".json")) throw new UnsupportedImplementation("JSON");
         System.out.println(this.getClass().getName());
         List<Entity> entities = new ArrayList<Entity>();
         String json = fileToString(file);
@@ -40,19 +40,17 @@ public class ImportExportJson extends ImportExportService {
                         Entity nestedEntity = new Entity();
                         nestedEntity.setId(nested.get("id").toString());
                         nestedEntity.setTitle((String) nested.get("title"));
-                        // nestedEntity.setEntityData((Map<String, Type>) nested.get("entityData"));
                         if(nested.get("entityData") != null){
                             Map<String,Object> nestedData = (Map<String, Object>) nested.get("entityData");
                             for (Map.Entry<String,Object> data : nestedData.entrySet()){
                                 if(data.getValue() instanceof String)
-                                    nestedEntity.addEntityData(data.getKey(), new SimpleType(data.getValue().toString()));
+                                    nestedEntity.addEntityData(data.getKey(), (String)data.getValue().toString());
                                 else System.out.println("GRESKA");
                             }
                         }
                         e.addEntityData(property.getKey(), nestedEntity);
                     } else if(property.getValue() instanceof String){
-                        SimpleType simpleType = new SimpleType(property.getValue().toString());
-                        e.addEntityData(property.getKey(), simpleType);
+                        e.addEntityData(property.getKey(), (String) property.getValue());
                     }else {
                         System.out.println("Mora string ili entity");
                     }
@@ -176,7 +174,10 @@ public class ImportExportJson extends ImportExportService {
     public boolean saveDatabase(File file, List<Entity> database) throws IOException {
         Boolean b = false;
         try {
-            String json = new Gson().toJson(database);
+            Gson gson = new Gson();
+            GsonBuilder gsonBuilder  = new GsonBuilder();
+            gsonBuilder.setPrettyPrinting();
+            String json = gsonBuilder.create().toJson(database);
             stringToFile(file, json);
             b = true;
         } catch (Exception e) {

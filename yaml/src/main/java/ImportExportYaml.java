@@ -1,10 +1,11 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
+import exceptions.UnsupportedImplementation;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.Entity;
-import model.SimpleType;
+
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -19,7 +20,8 @@ public class ImportExportYaml extends ImportExportService {
         ImportExportManager.registerImportExportService(new ImportExportYaml());
     }
     @Override
-    public List<Entity> loadDatabase(File file) throws IOException {
+    public List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation {
+        if(!file.getAbsolutePath().endsWith(".yaml")) throw new UnsupportedImplementation("YAML");
         Yaml yaml = new Yaml();
         try {
             InputStream in = new FileInputStream(file);
@@ -47,13 +49,13 @@ public class ImportExportYaml extends ImportExportService {
                                 Map<String,Object> nestedData = (Map<String, Object>) nested.get("entityData");
                                 for(Map.Entry<String, Object> data: nestedData.entrySet()){
                                     if(data.getValue() instanceof String)
-                                        nestedEntity.addEntityData(data.getKey(),new SimpleType(data.getValue().toString()));
+                                        nestedEntity.addEntityData(data.getKey(),(String)data.getValue());
                                 }
                                 entity.addEntityData(property.getKey(),entity);
                             }
                             entity.addEntityData(property.getKey(), nestedEntity);
                         }else if(property.getValue()instanceof String){
-                            entity.addEntityData(property.getKey(),new SimpleType(property.getValue().toString()));
+                            entity.addEntityData(property.getKey(),property.getValue().toString());
                         }
                     }
                 }
@@ -107,8 +109,14 @@ public class ImportExportYaml extends ImportExportService {
         boolean correct = false;
         try {
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER));
-            String yaml = mapper.writeValueAsString(database);
-            stringToFile(file, yaml);
+            StringBuilder stringBuilder = new StringBuilder();
+            String yaml = "";
+            for(Entity entity:database){
+                stringBuilder.append("---\n");
+                yaml = mapper.writeValueAsString(entity);
+                stringBuilder.append(yaml);
+            }
+            stringToFile(file, stringBuilder.toString());
         } catch (Exception e) {
             e.printStackTrace();
             return false;

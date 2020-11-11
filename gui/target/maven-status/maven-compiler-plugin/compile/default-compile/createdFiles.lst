@@ -1,6 +1,5 @@
 appcore\Main.class
 dialogs\FilterDialog$1.class
-dialogs\NewFileDialog.class
 controllers\SortController.class
 appcore\AppCore.class
 model\DataTableModel.class
@@ -13,7 +12,6 @@ appcore\MainFrame$InstanceHolder.class
 controllers\UpdateEntityController.class
 appcore\MainFrameWindowListener.class
 appcore\MainFrame.class
-model\Database.class
 controllers\AddEntityController.class
 dialogs\SortDialog$1.class
 appcore\MainFrame$1.class

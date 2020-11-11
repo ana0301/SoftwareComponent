@@ -11,19 +11,18 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    private Database database;
     private DataTableModel dataTableModel;
 
+    private ImportExportService importExportService;
     private MainFrame() {
         try {
             Class.forName("ImportExportJson");
-            ImportExportService importExportService = ImportExportManager.getImportExportService();
+             importExportService = ImportExportManager.getImportExportService();
         }catch (Exception e){
             e.printStackTrace();
         }
 
         //HEEEEEJ
-        database = Database.getInstance();
         dataTableModel = new DataTableModel();
 
         this.setTitle("GUIapp2a");
@@ -36,10 +35,6 @@ public class MainFrame extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addWindowListener(new MainFrameWindowListener());
-    }
-
-    public Database getDatabase() {
-        return database;
     }
 
     private static class InstanceHolder {
@@ -59,4 +54,7 @@ public class MainFrame extends JFrame {
         return InstanceHolder.instance;
     }
 
+    public ImportExportService getImportExportService() {
+        return importExportService;
+    }
 }

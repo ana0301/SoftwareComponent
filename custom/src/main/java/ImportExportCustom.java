@@ -1,3 +1,4 @@
+import exceptions.UnsupportedImplementation;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.Entity;
@@ -12,8 +13,9 @@ public class ImportExportCustom extends ImportExportService {
     static {
         ImportExportManager.registerImportExportService(new ImportExportCustom());
     }
-    public List<Entity> loadDatabase(File file) throws IOException {
+    public List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation {
         //RADI
+        if(!file.getAbsolutePath().endsWith(".txt")) throw new UnsupportedImplementation("TXT");
         List<Entity> entities = new ArrayList<Entity>();
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = "";
@@ -35,7 +37,7 @@ public class ImportExportCustom extends ImportExportService {
                             System.out.println("usao u title");
                         } else if (keyValue.get(0).equals("entityData")) {
                             System.out.println("usao u entity Data");
-                            Map<String, Type> entityData = new HashMap<String, Type>();
+                            Map<String, Object> entityData = new HashMap<String, Object>();
                             line = reader.readLine();
                             while (!line.equals("#")) {//ne zavrsi ta hes mapa
                                 if (!line.equals(">")) {
@@ -60,7 +62,7 @@ public class ImportExportCustom extends ImportExportService {
                                                     while (!line.equals("#")) {
                                                         System.out.println(" usao u nested datas");
                                                         List<String> kVnestedd = Arrays.asList(line.split("->"));
-                                                        nestedEntity.addEntityData(kVnestedd.get(0), new SimpleType(kVnestedd.get(1)));
+                                                        nestedEntity.addEntityData(kVnestedd.get(0), (String)kVnestedd.get(1));
                                                         line = reader.readLine();
                                                     }
                                                 }
@@ -71,8 +73,7 @@ public class ImportExportCustom extends ImportExportService {
                                     } else {
                                         //property
                                         System.out.println(" usao u regular entitydata");
-                                        SimpleType simpleType = new SimpleType(kVV.get(1));
-                                        entityData.put(kVV.get(0), simpleType);
+                                        entityData.put(kVV.get(0), kVV.get(1));
                                     }
                                 }
                                 line = reader.readLine();
@@ -105,9 +106,9 @@ public class ImportExportCustom extends ImportExportService {
                 writer.write("title->" + entity.getTitle()+"\n");
                 if(!entity.getEntityData().isEmpty()) {
                     writer.write("entityData->#\n");
-                    for(Map.Entry<String,Type> property : entity.getEntityData().entrySet()){
-                        if(property.getValue() instanceof SimpleType){
-                            writer.write(property.getKey()+"->"+((SimpleType) property.getValue()).getProperty()+"\n");
+                    for(Map.Entry<String,Object> property : entity.getEntityData().entrySet()){
+                        if(property.getValue() instanceof String){
+                            writer.write(property.getKey()+"->"+property.getValue()+"\n");
                         }else{
                             Entity e = (Entity) property.getValue();
                             writer.write(property.getKey()+"-><\n");
@@ -115,8 +116,8 @@ public class ImportExportCustom extends ImportExportService {
                             writer.write("title->"+e.getTitle()+"\n");
                             if(!entity.getEntityData().isEmpty()) {
                                 writer.write("entityData->#\n");
-                                for (Map.Entry<String, Type> nestedProp : e.getEntityData().entrySet()) {
-                                    writer.write(nestedProp.getKey()+"->"+((SimpleType) nestedProp.getValue()).getProperty()+"\n");
+                                for (Map.Entry<String, Object> nestedProp : e.getEntityData().entrySet()) {
+                                    writer.write(nestedProp.getKey()+"->"+(nestedProp.getValue())+"\n");
                                 }
                                 writer.write("#\n");
                             }

@@ -9,15 +9,14 @@ public class Test {
 
 
         try {
-            File file = new File("Json/src/proba.json");
+            File file = new File("json/src/proba.json");
             System.out.println(file.getAbsolutePath());
             List<Entity> entityList = importExport.loadDatabase(file);
             System.out.println("JSON");
             for(Entity entity : entityList){
                 System.out.println(entity);
-            }
-            //importExport.createDatabase("dada.json");
-            importExport.saveDatabase(new File("Json/src/upis.json"),entityList);
+            } File files =importExport.createDatabase("C:\\Users\\Reljic\\Desktop\\dadad.json");
+            importExport.saveDatabase(new File("json/src/upis.json"),entityList);
 
         }catch (Exception e){
             e.printStackTrace();
