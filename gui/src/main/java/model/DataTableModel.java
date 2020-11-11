@@ -22,6 +22,7 @@ public class DataTableModel extends DefaultTableModel {
         for(int i = 0; i < getRowCount(); i++){
             removeRow(i);
         }
+        setEntities(entities);
         for (Entity e: entities) {
             Object[] rowData = {e.getId(), e.getTitle(), e.getEntityData()};
             addRow(rowData);
@@ -45,5 +46,13 @@ public class DataTableModel extends DefaultTableModel {
             entities.add(entity);
         }
         return entities;
+    }
+
+    public List<Entity> getEntities() {
+        return entities;
+    }
+
+    public void setEntities(List<Entity> entities) {
+        this.entities = entities;
     }
 }

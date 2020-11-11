@@ -9,9 +9,9 @@ import java.util.List;
 
 public class FilterDialog extends JDialog implements ActionListener {
     public static String[] filterBy = {"","ID", "NAME", "KEY", "VALUE"};
-    public static String[] numberFilter = {"","EQUALS", "GREATER_THAN", "LESS_THAN"};
+    //public static String[] numberFilter = {"","EQUALS", "GREATER_THAN", "LESS_THAN"};
     public static String[] stringFilter = {"","EQUALS", "CONTAINS", "STARTS_WITH", "ENDS_WITH"};
-    public static String[] allFilter = {"","EQUALS", "GREATER_THAN", "LESS_THAN","CONTAINS", "STARTS_WITH", "ENDS_WITH"};
+    //public static String[] allFilter = {"","EQUALS", "GREATER_THAN", "LESS_THAN","CONTAINS", "STARTS_WITH", "ENDS_WITH"};
 
     public static final int CONFIRM = 0;
     public static final int CANCEL = 1;
@@ -65,8 +65,8 @@ public class FilterDialog extends JDialog implements ActionListener {
                     int selectedIndex = filterByCmb.get(finalI).getSelectedIndex();
                     filterOptionsCmb.get(finalI).removeAllItems();
                     if (selectedIndex == 1){
-                        for (int j = 0; j < numberFilter.length; j++){
-                            filterOptionsCmb.get(finalI).addItem(numberFilter[j]);
+                        for (int j = 0; j < stringFilter.length; j++){
+                            filterOptionsCmb.get(finalI).addItem(stringFilter[j]);
                         }
                         rightTextField.get(finalI).setEditable(true);
                     }else if(selectedIndex == 2 || selectedIndex == 3){
@@ -75,8 +75,8 @@ public class FilterDialog extends JDialog implements ActionListener {
                         }
                         rightTextField.get(finalI).setEditable(true);
                     }else if(selectedIndex == 4){
-                        for (int j = 0; j < allFilter.length; j++){
-                            filterOptionsCmb.get(finalI).addItem(allFilter[j]);
+                        for (int j = 0; j < stringFilter.length; j++){
+                            filterOptionsCmb.get(finalI).addItem(stringFilter[j]);
                         }
                         leftTextField.get(finalI).setEditable(true);
                         rightTextField.get(finalI).setEditable(true);
