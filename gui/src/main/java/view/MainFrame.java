@@ -1,16 +1,13 @@
-package appcore;
+package view;
 
 import controllers.*;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.DataTableModel;
-import model.Database;
 import service.CRUDService;
 import service.FilterSortService;
 import service.impl.CRUDServiceImpl;
 import service.impl.FilterSortServiceImpl;
-import view.DataTableView;
-import view.DataView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -93,6 +90,10 @@ public class MainFrame extends JFrame {
 
     public ImportExportService getImportExportService() {
         return importExportService;
+    }
+
+    public DataTableView getDataTableView() {
+        return dataTableView;
     }
 
     private void initButtonPanel(JPanel panel) {

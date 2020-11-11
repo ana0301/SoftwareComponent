@@ -1,6 +1,6 @@
 package controllers;
 
-import appcore.MainFrame;
+import view.MainFrame;
 import dialogs.FilterDialog;
 
 import java.awt.event.ActionEvent;

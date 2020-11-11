@@ -25,7 +25,7 @@ public class CRUDServiceImpl implements CRUDService {
     }
 
     @Override
-    public boolean addEntity(String title, String id, String[] keys, String[] values) throws IdNotUnique {
+    public boolean addEntity(String id, String title, String[] keys, String[] values) throws IdNotUnique {
         if (id != null){
             if(!Database.getInstance().isUniqueId(id)) throw new IdNotUnique();
         }else{
