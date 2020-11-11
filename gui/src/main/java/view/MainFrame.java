@@ -4,6 +4,7 @@ import controllers.*;
 import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.DataTableModel;
+import model.Entity;
 import service.CRUDService;
 import service.FilterSortService;
 import service.impl.CRUDServiceImpl;
@@ -11,6 +12,7 @@ import service.impl.FilterSortServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class MainFrame extends JFrame {
 
@@ -61,6 +63,8 @@ public class MainFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addWindowListener(new MainFrameWindowListener());
     }
+
+
 
 
     private static class InstanceHolder {
