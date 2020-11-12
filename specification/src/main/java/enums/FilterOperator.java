@@ -1,5 +1,9 @@
 package enums;
 
+/**
+ * Enum
+ */
+
 public enum FilterOperator {
     STARTS_WITH,
     ENDS_WITH,

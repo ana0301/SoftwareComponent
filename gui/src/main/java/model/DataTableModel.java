@@ -1,7 +1,6 @@
 package model;
 
 
-import com.sun.rowset.internal.Row;
 import view.MainFrame;
 
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +19,7 @@ public class DataTableModel extends DefaultTableModel {
 
     public void updateTableModel(List<Entity> entities){
         while (getRowCount() != 0) removeRow(0);
+        setEntities(entities);
         for (Entity e: entities) {
             Object[] rowData = {e.getId(), e.getTitle(), e.getEntityData()};
             addRow(rowData);

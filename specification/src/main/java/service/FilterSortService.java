@@ -2,6 +2,7 @@ package service;
 
 import enums.FilterOperator;
 import enums.SortTarget;
+import exceptions.SortUnable;
 import model.Entity;
 import enums.SortOrder;
 
@@ -17,6 +18,6 @@ public interface FilterSortService {
     List<Entity> filterByKey(List<Entity> entities, FilterOperator filterOperator, String target);
     List<Entity> filterByValue(FilterOperator filterOperator, String key, String target);
     List<Entity> filterByValue(List<Entity> entities, FilterOperator filterOperator, String key, String target);
-    List<Entity> sort(SortOrder sortOrder, SortTarget sortTarget);
-    List<Entity> sort(List<Entity> entities, SortOrder sortOrder, SortTarget sortTarget);
+    List<Entity> sortByIdTitle(List<Entity> entities, SortOrder sortOrder, SortTarget sortTarget);
+    List<Entity> sortByKey(List<Entity> entities, SortOrder sortOrder, SortTarget sortTarget, String key) throws SortUnable;
 }
