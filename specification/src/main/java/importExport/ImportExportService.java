@@ -13,34 +13,34 @@ public abstract class ImportExportService {
 
 
     /**
-     * Read file
-     * @param file
-     * @return List<Entity>
-     * @throws IOException
-     * @throws UnsupportedImplementation
+     * Reads file and makes entities from it
+     * @param file which need to be load
+     * @return list of entities that has been loaded
+     * @throws IOException if file is in wrong format
+     * @throws UnsupportedImplementation if you choose wrong file
      */
     public abstract List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation;
 
     /**
-     * Write database in certain format
-     * @param file
-     * @param database
-     * @return boolean
+     * Writes list of entities in certain format
+     * @param file in which list will be written
+     * @param database list of entities that need to be written in file
+     * @return true if file has been written successfully else false
      * @throws IOException
      */
     public abstract boolean saveDatabase(File file, List<Entity> database) throws IOException;
 
     /**
-     *
-     * @param namePath
-     * @return File
+     *Creates a file with correct extension
+     * @param namePath name of file
+     * @return File created file
      */
     public abstract File createDatabase(String namePath);
 
     /**
-     *
-     * @param files
-     * @return boolean
+     *Loads one or more files calling loadDatabase(File file) for every file in list and set loaded list of entities to database and set that files as current files in database
+     * @param files to load
+     * @return true loading has been finished successfully else false
      */
     public boolean loadDatabase(List<File> files){
         if(files.isEmpty()) return false;
@@ -64,11 +64,11 @@ public abstract class ImportExportService {
     }
 
     /**
-     *
-     * @param path
-     * @param numberOfEntity
-     * @param nameFile
-     * @return boolean
+     * Saving database in new files
+     * @param path location where file will be saved
+     * @param numberOfEntity that user want to save in one file
+     * @param nameFile wanted name file
+     * @return true if files have been saved successfully
      * @throws IOException
      */
     public boolean saveDatabase(String path, int numberOfEntity, String nameFile) throws IOException {
@@ -103,9 +103,9 @@ public abstract class ImportExportService {
     }
 
     /**
-     *
-     * @param numberOfEntity
-     * @return boolean
+     *Saving database in files from database was loaded and creates new files if it is necessary
+     * @param numberOfEntity user want to save in one file
+     * @return true if files have been saved successfully
      */
     public boolean saveDatabase(int numberOfEntity){
         int counter = 0;
@@ -158,9 +158,9 @@ public abstract class ImportExportService {
     }
 
     /**
-     *
-     * @param path
-     * @return boolean
+     *Creates new file and add that file in list of files in database
+     * @param path name of file
+     * @return true if file has been created
      */
     public boolean createNewDatabase(String path){
             File file = createDatabase(path);

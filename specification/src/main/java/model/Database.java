@@ -63,7 +63,7 @@ public class Database {
 
     /**
      * Checks if given id is unique
-     * @param id
+     * @param id of entity
      * @return true if given id is unique else false
      */
     public boolean isUniqueId(String id){
@@ -83,7 +83,7 @@ public class Database {
 
     /**
      * Setter for entity list
-     * @param entityList
+     * @param entityList that is loaded
      */
     public void setEntityList(List<Entity> entityList) {
         this.entityList = entityList;
@@ -91,7 +91,7 @@ public class Database {
 
     /**
      *
-     * @param id
+     * @param id of entity
      * @return entity from current entity list which has given id
      */
     public Entity getEntityById(String id){
@@ -103,7 +103,7 @@ public class Database {
 
     /**
      * Adds entity to entity list if id is unique
-     * @param e
+     * @param e entity wanted to add in list
      * @return true if the entity has been added to the entity list else false
      */
     public boolean addEntity(Entity e){
@@ -113,7 +113,7 @@ public class Database {
 
     /**
      * Removes entity with given id from entity list
-     * @param id
+     * @param id of entity
      * @return true if entity has been removed correctly else false
      */
     public boolean removeEntity(String id){
@@ -127,7 +127,7 @@ public class Database {
 
     /**
      * Adds given id to the list of current ids
-     * @param id
+     * @param id of entity
      * @return true if given id has been added correctly else false
      */
     public boolean addId(String id){
@@ -136,7 +136,7 @@ public class Database {
 
     /**
      * Removes given id from the list of ids if id exists
-     * @param id
+     * @param id of entity
      * @return true if given id has been removed correctly else false
      */
     public boolean removeId(String id){
@@ -160,7 +160,7 @@ public class Database {
 
     /**
      * Loads ids of all entities from the given database
-     * @param entityList
+     * @param entityList whose ids need to be loaded
      * @return false if some id has already been added in list of ids
      */
     public boolean loadIds(List<Entity> entityList){
@@ -194,7 +194,7 @@ public class Database {
 
     /**
      * Setter for current files
-     * @param currentFiles
+     * @param currentFiles from which database has been loaded
      */
     public void setCurrentFiles(List<File> currentFiles) {
         this.currentFiles = currentFiles;
