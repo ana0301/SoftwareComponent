@@ -1,6 +1,5 @@
 package controllers;
 
-import appcore.Main;
 import dialogs.AddUpdateDialog;
 import view.MainFrame;
 
