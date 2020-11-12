@@ -8,11 +8,13 @@ view\DataTableView.class
 view\MainFrame$1.class
 controllers\ShowAllDataController.class
 view\MainFrame.class
+controllers\UpdateNestedEntityController.class
 dialogs\AddUpdateDialog.class
 controllers\FilterController.class
 controllers\UpdateEntityController.class
 controllers\AddEntityController.class
 view\MainFrame$InstanceHolder.class
+dialogs\ChooseNestedDialog.class
 dialogs\SortDialog$1.class
 controllers\AddNestedEntityController.class
 dialogs\FilterDialog.class

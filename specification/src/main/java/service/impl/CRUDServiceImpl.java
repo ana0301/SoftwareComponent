@@ -7,6 +7,7 @@ import model.SimpleType;
 import model.Type;
 import service.CRUDService;
 
+import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,5 +78,23 @@ public class CRUDServiceImpl implements CRUDService {
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean updateNestedEntity(Entity oldEntity,String keyFor,String idParent, String title, String newId, String[] keys, String[] values) throws IdNotUnique {
+        if(!oldEntity.getId().equals(newId)){
+            if (newId != null && !newId.equals("")){
+                if(!Database.getInstance().isUniqueId(newId)) throw new IdNotUnique();
+            }else{
+                newId = Database.getInstance().getUniqueId();
+            }
+        }
+
+        Entity parent = Database.getInstance().getEntityById(idParent);
+        parent.getEntityData().entrySet().remove(oldEntity);
+        Entity nested = new Entity(title, newId, mapData(keys, values));
+        parent.getEntityData().put(keyFor,nested);
+
+        return false;
     }
 }

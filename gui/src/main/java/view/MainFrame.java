@@ -27,6 +27,7 @@ public class MainFrame extends JFrame {
     private JButton addNestedButton;
     private JButton deleteButton;
     private JButton updateButton;
+    private JButton updateNestedButton;
     private JButton filterButton;
     private JButton sortButton;
     private JButton showAllDataButton;
@@ -35,7 +36,7 @@ public class MainFrame extends JFrame {
     private ImportExportService importExportService;
     private MainFrame() {
         try {
-            Class.forName("ImportExportCustom");
+            Class.forName("ImportExportJson");
              importExportService = ImportExportManager.getImportExportService();
         }catch (Exception e){
             e.printStackTrace();
@@ -114,6 +115,8 @@ public class MainFrame extends JFrame {
         deleteButton.addActionListener(new DeleteEntityController());
         this.updateButton = new JButton("UPDATE");
         updateButton.addActionListener(new UpdateEntityController());
+        this.updateNestedButton = new JButton("UPDATE NESTED");
+        updateNestedButton.addActionListener(new UpdateNestedEntityController());
         this.filterButton = new JButton("FILTER");
         filterButton.addActionListener(new FilterController());
         this.sortButton = new JButton("SORT");
@@ -125,6 +128,7 @@ public class MainFrame extends JFrame {
         buttonPanel.add(addNestedButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(updateButton);
+        buttonPanel.add(updateNestedButton);
         buttonPanel.add(filterButton);
         buttonPanel.add(sortButton);
         buttonPanel.add(showAllDataButton);

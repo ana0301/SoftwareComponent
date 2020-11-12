@@ -1,5 +1,7 @@
 package dialogs;
 
+import model.Entity;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class AddUpdateDialog extends JDialog implements ActionListener {
     private JLabel titleLabel;
@@ -91,16 +94,15 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
         return toReturn;
     }
 
-    public void setFields(String id, String title, String data){
+    public void setFields(String id, String title, Map<String,Object> data){
         idField.setText(id);
         titleField.setText(title);
-        List<String> props = Arrays.asList(data.split(","));
         String toSend = "";
-        for(String p : props){
-            p = p.replaceAll("[^a-zA-Z0-9=]+","");
-          toSend = toSend.concat(p+"\n");
+        for(Map.Entry<String, Object> property : data.entrySet()){
+            if(property.getValue() instanceof String){
+                toSend = toSend.concat(property.getKey() + " - " + property.getValue() +"\n");
+            }
         }
-
         dataTextArea.setText(toSend);
     }
 

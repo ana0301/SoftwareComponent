@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Map;
 
 public class UpdateEntityController implements ActionListener {
     @Override
@@ -20,7 +21,7 @@ public class UpdateEntityController implements ActionListener {
             AddUpdateDialog addUpdateDialog  = new AddUpdateDialog(MainFrame.getInstance(),"Update",true);
             String id = (String) MainFrame.getInstance().getDataTableView().getValueAt(selectedRows[0],0);
             String title = (String)MainFrame.getInstance().getDataTableView().getValueAt(selectedRows[0],1);
-            String data = MainFrame.getInstance().getDataTableView().getValueAt(selectedRows[0],2).toString();
+            Map<String,Object> data = (Map<String, Object>) MainFrame.getInstance().getDataTableView().getValueAt(selectedRows[0],2);
             addUpdateDialog.setFields(id,title,data);
             addUpdateDialog.setVisible(true);
             if(addUpdateDialog.getMode() == 0){

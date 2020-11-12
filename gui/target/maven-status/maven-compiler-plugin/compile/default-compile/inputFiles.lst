@@ -1,6 +1,7 @@
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\controllers\AddEntityController.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\dialogs\AddUpdateDialog.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\controllers\FilterController.java
+C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\dialogs\ChooseNestedDialog.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\appcore\AppCore.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\appcore\Main.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\dialogs\FilterDialog.java
@@ -14,3 +15,4 @@ C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\model\DataTableModel
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\controllers\SortController.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\view\MainFrameWindowListener.java
 C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\controllers\ShowAllDataController.java
+C:\Users\Reljic\Desktop\SoftwareComponent\gui\src\main\java\controllers\UpdateNestedEntityController.java
