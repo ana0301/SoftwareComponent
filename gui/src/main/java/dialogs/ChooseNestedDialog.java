@@ -29,7 +29,8 @@ public class ChooseNestedDialog extends JDialog implements ActionListener {
         for(String entity : entities){
             comboBox.addItem(entity);
         }
-        setSize(200,200);
+        setSize(200,125);
+        setLocationRelativeTo(MainFrame.getInstance());
 
         confirmButton = new JButton("CONFIRM");
         cancelButton = new JButton("CANCEL");

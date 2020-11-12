@@ -3,7 +3,6 @@ import importExport.ImportExportManager;
 import importExport.ImportExportService;
 import model.Entity;
 import java.io.*;
-import java.security.spec.ECField;
 import java.util.*;
 
 public class ImportExportCustom extends ImportExportService {

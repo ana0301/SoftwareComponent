@@ -13,7 +13,6 @@ import java.util.Map;
 public class UpdateEntityController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-        //TODO updateEntity
         int[] selectedRows = MainFrame.getInstance().getDataTableView().getSelectedRows();
         if (selectedRows.length == 0) JOptionPane.showMessageDialog(MainFrame.getInstance(),"You need to select entity","Warning" ,JOptionPane.WARNING_MESSAGE);
         else if(selectedRows.length != 1) JOptionPane.showMessageDialog(MainFrame.getInstance(),"You need to select only one entity","Warning" ,JOptionPane.WARNING_MESSAGE);

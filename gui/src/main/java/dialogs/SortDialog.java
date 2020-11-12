@@ -24,7 +24,7 @@ public class SortDialog extends JDialog implements ActionListener {
     public SortDialog(Frame owner, String title, boolean modal) {
         super(owner, title, modal);
         setMode(FilterDialog.CANCEL);
-        this.setMinimumSize(new Dimension(500,500));
+        this.setMinimumSize(new Dimension(600,125));
         setLocationRelativeTo(owner);
 
         sortByCmb = new JComboBox<>(sortBy);

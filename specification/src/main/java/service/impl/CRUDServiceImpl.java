@@ -3,11 +3,8 @@ package service.impl;
 import exceptions.IdNotUnique;
 import model.Database;
 import model.Entity;
-import model.SimpleType;
-import model.Type;
 import service.CRUDService;
 
-import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
         filterSortService = new FilterSortServiceImpl();
 
         this.setTitle("GUIapp2a");
-        this.setSize(1200, 1200);
+        this.setSize(1200, 600);
         this.setLayout(new BorderLayout());
 
         JPanel dataView = new JPanel();
@@ -143,6 +143,7 @@ public class MainFrame extends JFrame {
     public void setHasAnything(boolean hasAnything) {
         this.hasAnything = hasAnything;
     }
+
     public void setButtonsEnabled(){
         addButton.setEnabled(false);
         addNestedButton.setEnabled(false);
@@ -151,6 +152,7 @@ public class MainFrame extends JFrame {
         filterButton.setEnabled(false);
         sortButton.setEnabled(false);
         showAllDataButton.setEnabled(false);
+        updateNestedButton.setEnabled(false);
 
     }
 }

@@ -31,12 +31,18 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
     public AddUpdateDialog(JFrame owner, String title, boolean modal) {
         super(owner, title, modal);
         setMode(AddUpdateDialog.CANCEL);
-        this.setMinimumSize(new Dimension(500,500));
+        this.setMinimumSize(new Dimension(600,250));
         setLocationRelativeTo(owner);
 
         idLabel = new JLabel("ID: ");
+        idLabel.setHorizontalAlignment(JLabel.CENTER);
+        idLabel.setVerticalAlignment(JLabel.CENTER);
         titleLabel = new JLabel("NAME: ");
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titleLabel.setVerticalAlignment(JLabel.CENTER);
         dataLabel = new JLabel("DATA: ");
+        dataLabel.setHorizontalAlignment(JLabel.CENTER);
+        dataLabel.setVerticalAlignment(JLabel.CENTER);
 
         idField = new JTextField();
         titleField = new JTextField();

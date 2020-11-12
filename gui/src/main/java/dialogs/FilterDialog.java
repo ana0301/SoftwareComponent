@@ -29,7 +29,7 @@ public class FilterDialog extends JDialog implements ActionListener {
     public FilterDialog(JFrame owner, String title, boolean modal) {
         super(owner, title, modal);
         setMode(FilterDialog.CANCEL);
-        this.setMinimumSize(new Dimension(500,500));
+        this.setMinimumSize(new Dimension(600,300));
         setLocationRelativeTo(owner);
 
         initFields();
