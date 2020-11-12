@@ -2,10 +2,12 @@ package controllers;
 
 import enums.SortOrder;
 import enums.SortTarget;
+import exceptions.SortUnable;
 import model.Entity;
 import view.MainFrame;
 import dialogs.SortDialog;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -37,7 +39,22 @@ public class SortController implements ActionListener {
                 ));
             }
             if (toSend[0].equals("KEY")){
-
+                if(toSend[2].equals("ASCENDING")) {
+                    try {
+                        result = MainFrame.getInstance().getFilterSortService().sortByKey(
+                                MainFrame.getInstance().getDataTableModel().getEntities(),SortOrder.ASC,SortTarget.KEY, toSend[1]);
+                    } catch (SortUnable sortUnable) {
+                        sortUnable.printStackTrace();
+                    }
+                }
+                if(toSend[2].equals("DESCENDING")) {
+                    try {
+                        result = MainFrame.getInstance().getFilterSortService().sortByKey(
+                                MainFrame.getInstance().getDataTableModel().getEntities(),SortOrder.DESC,SortTarget.KEY, toSend[1]);
+                    } catch (SortUnable sortUnable) {
+                        sortUnable.printStackTrace();
+                    }
+                }
             }
             MainFrame.getInstance().getDataTableModel().updateTableModel(result);
         }

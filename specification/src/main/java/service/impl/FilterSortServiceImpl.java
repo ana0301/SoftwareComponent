@@ -167,7 +167,6 @@ public class FilterSortServiceImpl implements FilterSortService {
             Collections.sort(entities, new Comparator<Entity>() {
                 @Override
                 public int compare(Entity o1, Entity o2) {
-                    //TODO omoguciti za nested entitete jebene!
                     if(o1.getEntityData().containsKey(key) && o2.getEntityData().containsKey(key)){
                         return (o1.getEntityData().get(key).toString().compareTo(o2.getEntityData().get(key).toString()));
                     }else if(o1.getEntityData().containsKey(key)){
