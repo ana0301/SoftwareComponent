@@ -14,6 +14,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implements filter and sort services
+ */
+
 public class FilterSortServiceImpl implements FilterSortService {
     @Override
     public List<Entity> getAllData() {
@@ -142,8 +146,6 @@ public class FilterSortServiceImpl implements FilterSortService {
 
     @Override
     public List<Entity> sortByIdTitle(List<Entity> entities, SortOrder sortOrder, SortTarget sortTarget) {
-        //List<Entity> toReturn = new ArrayList<>();
-        System.out.println("Duzina poslatog niza // sortByIdTitle: "+entities.size());
         switch (sortTarget){
             case ID:
                 if (sortOrder == SortOrder.ASC)
@@ -157,7 +159,6 @@ public class FilterSortServiceImpl implements FilterSortService {
                 break;
             default: break;
         }
-        System.out.println("Duzina toReturn niza // sortByIdTitle: "+entities.size());
         return entities;
     }
 

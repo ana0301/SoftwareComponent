@@ -10,7 +10,6 @@ public class ImportExportCustom extends ImportExportService {
         ImportExportManager.registerImportExportService(new ImportExportCustom());
     }
     public List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation {
-        //RADI
         if(!file.getAbsolutePath().endsWith(".txt")) throw new UnsupportedImplementation("TXT");
         List<Entity> entities = new ArrayList<Entity>();
         BufferedReader reader = new BufferedReader(new FileReader(file));

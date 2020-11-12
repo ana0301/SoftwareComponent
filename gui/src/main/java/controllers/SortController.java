@@ -21,7 +21,6 @@ public class SortController implements ActionListener {
             String[] toSend = sd.getFields();
             List<Entity> result = new ArrayList<>();
             List<Entity> listToSend = MainFrame.getInstance().getDataTableModel().getEntities();
-            System.out.println("Duzina niza listToSend: "+listToSend.size());
             if(toSend[0].equals("ID")){
                 if (toSend[2].equals("ASCENDING")) result = MainFrame.getInstance().getFilterSortService().sortByIdTitle(
                         MainFrame.getInstance().getDataTableModel().getEntities(), SortOrder.ASC, SortTarget.ID

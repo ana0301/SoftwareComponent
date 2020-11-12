@@ -3,6 +3,10 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Model for an entity
+ */
+
 public class Entity{
     /**
      * Type of entity

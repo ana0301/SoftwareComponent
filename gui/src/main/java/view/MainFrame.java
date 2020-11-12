@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
         crudService = new CRUDServiceImpl();
         filterSortService = new FilterSortServiceImpl();
 
-        this.setTitle("GUIapp2a");
+        this.setTitle("GUI Test application");
         this.setSize(1200, 600);
         this.setLayout(new BorderLayout());
 

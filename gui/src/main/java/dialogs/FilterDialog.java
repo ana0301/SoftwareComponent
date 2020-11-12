@@ -81,7 +81,7 @@ public class FilterDialog extends JDialog implements ActionListener {
                         leftTextField.get(finalI).setEditable(true);
                         rightTextField.get(finalI).setEditable(true);
                     }else{
-                        //TODO return error
+                        return;
                     }
                 }
             });

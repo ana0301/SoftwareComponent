@@ -9,10 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implements add, update and delete services
+ */
+
 public class CRUDServiceImpl implements CRUDService {
 
     private Map<String, Object> mapData(String[] keys, String[] values){
-        //TODO exception kada duzina nizova keys i values nije ista
         Map<String, Object> data = new HashMap<>();
         for (int i = 0; i < keys.length; i++){
             if(keys[i].equalsIgnoreCase("")) continue;

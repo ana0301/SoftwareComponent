@@ -92,9 +92,6 @@ public class AddUpdateDialog extends JDialog implements ActionListener {
             if(tokens[i].contains("-")) delim = "-";
             if(tokens[i].contains("=")) delim = "=";
             String[] token = tokens[i].split(delim);
-            for(int j  =0; j < token.length; j++){
-                System.out.println(token[j] + Integer.toString(j));
-            }
             keys[i] = token[0].trim();
             if (token[1] == null) token[1] = "";
             values[i] = token[1].trim();

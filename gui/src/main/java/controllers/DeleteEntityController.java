@@ -30,8 +30,5 @@ public class DeleteEntityController implements ActionListener {
         List<String> entityList = MainFrame.getInstance().getDataTableModel().entitiesIds(selectedRows);
         MainFrame.getInstance().getCrudService().deleteEntity(entityList);
         MainFrame.getInstance().getDataTableModel().updateTableModel(MainFrame.getInstance().getFilterSortService().getAllData());
-       /* for(int i = 0; i < selectedRows.length;i++){
-            MainFrame.getInstance().getDataTableModel().removeRow(selectedRows[i]);
-        }*/
     }
 }

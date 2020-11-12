@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service for importing database from files and exporting database to chosen file format
+ */
 public abstract class ImportExportService {
 
 
@@ -17,7 +20,7 @@ public abstract class ImportExportService {
      * @param file which need to be load
      * @return list of entities that has been loaded
      * @throws IOException if file is in wrong format
-     * @throws UnsupportedImplementation if you choose wrong file
+     * @throws UnsupportedImplementation if wrong file is chosen
      */
     public abstract List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation;
 
@@ -53,8 +56,6 @@ public abstract class ImportExportService {
            if( Database.getInstance().loadIds(list))
                 Database.getInstance().setEntityList(list);
            else return false;
-            System.out.println( "Ucitano entiteta: "+Database.getInstance().getEntityList().size());
-            System.out.println(Database.getInstance().getAllIds());
         }catch (Exception e){
             e.printStackTrace();
             return false;
@@ -89,7 +90,6 @@ public abstract class ImportExportService {
                 counter++;
             }
             File file = createDatabase(path+"\\"+nameFile + counterFile);
-            System.out.println(file.getAbsolutePath());
             saveDatabase(file, entityToWrite);
             entityToWrite.clear();
             for(File filee: Database.getInstance().getCurrentFiles()){
@@ -115,7 +115,6 @@ public abstract class ImportExportService {
         String folderPath = path.substring(0,path.length()-Database.getInstance().getCurrentFiles().get(0).getName().length());
         boolean old = true;
         List<Entity> entityToWrite = new ArrayList<>();
-        System.err.println(Database.getInstance().getEntityList().size() + " toliko entiteta");
         try {
             for (Entity entity : Database.getInstance().getEntityList()) {
                if(counter == numberOfEntity){
@@ -142,7 +141,6 @@ public abstract class ImportExportService {
                 File file = createDatabase(folderPath+"new"+counterNewFile);
                 saveDatabase(file,entityToWrite);
             }
-            System.err.println(counterOldFile);
             if(counterOldFile < Database.getInstance().getCurrentFiles().size()){
                 while(counterOldFile < Database.getInstance().getCurrentFiles().size()){
                    Database.getInstance().getCurrentFiles().get(counterOldFile).delete();
