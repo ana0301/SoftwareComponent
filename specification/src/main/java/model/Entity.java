@@ -8,8 +8,16 @@ public class Entity{
     private String id;
     private Map<String, Object> entityData = new HashMap<String, Object>();
 
+    /**
+     * Empty constructor
+     */
     public Entity(){}
 
+    /**
+     * Const
+     * @param title
+     * @param id
+     */
     public Entity(String title, String id) {
         this.title = title;
         this.id = id;

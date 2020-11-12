@@ -4,14 +4,35 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-public class Database {
-    private static Database instance = null;
 
+/**
+ * Class that contains all loaded entities
+ */
+public class Database {
+    /**
+     * Instance of current database
+     */
+    private static Database instance = null;
+    /**
+     * Saves the last available id
+     */
     private Integer lastUnique;
+    /**
+     * List of loaded entities
+     */
     private List<Entity> entityList;
+    /**
+     * List of ids for current database
+     */
     private List<String> allIds;
+    /**
+     * List of files from database which was loaded
+     */
     private List<File> currentFiles;
 
+    /**
+     * Empty constructor
+     */
     private Database(){
         this.lastUnique = -1;
         this.entityList =  new ArrayList<>();
@@ -19,6 +40,10 @@ public class Database {
         this.currentFiles = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return unique id
+     */
     public String getUniqueId(){
         boolean unique;
         lastUnique++;
@@ -36,6 +61,11 @@ public class Database {
         return lastUnique.toString();
     }
 
+    /**
+     * Checks if given id is unique
+     * @param id
+     * @return true if given id is unique else false
+     */
     public boolean isUniqueId(String id){
         for (String i: allIds) {
             if (i.equalsIgnoreCase(id)) return false;
@@ -43,14 +73,27 @@ public class Database {
         return true;
     }
 
+    /**
+     * Getter for entity list
+     * @return list of loaded entities
+     */
     public List<Entity> getEntityList() {
         return entityList;
     }
 
+    /**
+     * Setter for entity list
+     * @param entityList
+     */
     public void setEntityList(List<Entity> entityList) {
         this.entityList = entityList;
     }
 
+    /**
+     *
+     * @param id
+     * @return entity from current entity list which has given id
+     */
     public Entity getEntityById(String id){
         for (Entity e : entityList) {
             if (e.getId().equalsIgnoreCase(id)) return e;
@@ -58,11 +101,21 @@ public class Database {
         return null;
     }
 
+    /**
+     * Adds entity to entity list if id is unique
+     * @param e
+     * @return true if the entity has been added to the entity list else false
+     */
     public boolean addEntity(Entity e){
         if (addId(e.getId())) return this.entityList.add(e);
         return false;
     }
 
+    /**
+     * Removes entity with given id from entity list
+     * @param id
+     * @return true if entity has been removed correctly else false
+     */
     public boolean removeEntity(String id){
         for (Entity e: entityList) {
             if (e.getId().equalsIgnoreCase(id)) {
@@ -72,10 +125,20 @@ public class Database {
         return false;
     }
 
+    /**
+     * Adds given id to the list of current ids
+     * @param id
+     * @return true if given id has been added correctly else false
+     */
     public boolean addId(String id){
         return this.allIds.add(id);
     }
 
+    /**
+     * Removes given id from the list of ids if id exists
+     * @param id
+     * @return true if given id has been removed correctly else false
+     */
     public boolean removeId(String id){
         for(String i: allIds){
             if (i.equalsIgnoreCase(id)) return allIds.remove(i);
@@ -83,6 +146,10 @@ public class Database {
         return false;
     }
 
+    /**
+     *
+     * @return the instance of database if it exists, else create a new database and returns that instance
+     */
     public static Database getInstance() {
         if (instance == null){
             instance = new Database();
@@ -91,7 +158,11 @@ public class Database {
     }
 
 
-
+    /**
+     * Loads ids of all entities from the given database
+     * @param entityList
+     * @return false if some id has already been added in list of ids
+     */
     public boolean loadIds(List<Entity> entityList){
         for(Entity entity: entityList){
             if(allIds.contains(entity.getId())) {
@@ -112,14 +183,27 @@ public class Database {
         }
         return true;
     }
+
+    /**
+     * Getter for current files
+     * @return list of files
+     */
     public List<File> getCurrentFiles() {
         return currentFiles;
     }
 
+    /**
+     * Setter for current files
+     * @param currentFiles
+     */
     public void setCurrentFiles(List<File> currentFiles) {
         this.currentFiles = currentFiles;
     }
 
+    /**
+     * Getter for all ids
+     * @return list of ids
+     */
     public List<String> getAllIds() {
         return allIds;
     }

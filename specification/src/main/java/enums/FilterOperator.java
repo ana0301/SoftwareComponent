@@ -1,7 +1,7 @@
 package enums;
 
 /**
- * Enum
+ * Enumerates possible filter operators
  */
 
 public enum FilterOperator {

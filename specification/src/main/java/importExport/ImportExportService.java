@@ -11,10 +11,37 @@ import java.util.List;
 
 public abstract class ImportExportService {
 
+
+    /**
+     * Read file
+     * @param file
+     * @return List<Entity>
+     * @throws IOException
+     * @throws UnsupportedImplementation
+     */
     public abstract List<Entity> loadDatabase(File file) throws IOException, UnsupportedImplementation;
+
+    /**
+     * Write database in certain format
+     * @param file
+     * @param database
+     * @return boolean
+     * @throws IOException
+     */
     public abstract boolean saveDatabase(File file, List<Entity> database) throws IOException;
+
+    /**
+     *
+     * @param namePath
+     * @return File
+     */
     public abstract File createDatabase(String namePath);
 
+    /**
+     *
+     * @param files
+     * @return boolean
+     */
     public boolean loadDatabase(List<File> files){
         if(files.isEmpty()) return false;
         List<Entity> list = new ArrayList<Entity>();
@@ -35,6 +62,15 @@ public abstract class ImportExportService {
         Database.getInstance().setCurrentFiles(files);
         return true;
     }
+
+    /**
+     *
+     * @param path
+     * @param numberOfEntity
+     * @param nameFile
+     * @return boolean
+     * @throws IOException
+     */
     public boolean saveDatabase(String path, int numberOfEntity, String nameFile) throws IOException {
         int counter = 0;
         int counterFile = 1;
@@ -65,6 +101,12 @@ public abstract class ImportExportService {
         }
         return true;
     }
+
+    /**
+     *
+     * @param numberOfEntity
+     * @return boolean
+     */
     public boolean saveDatabase(int numberOfEntity){
         int counter = 0;
         int counterNewFile = 1;
@@ -115,6 +157,11 @@ public abstract class ImportExportService {
         return true;
     }
 
+    /**
+     *
+     * @param path
+     * @return boolean
+     */
     public boolean createNewDatabase(String path){
             File file = createDatabase(path);
             if(file != null)

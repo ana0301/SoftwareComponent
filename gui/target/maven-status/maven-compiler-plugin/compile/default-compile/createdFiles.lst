@@ -1,7 +1,6 @@
 appcore\Main.class
 dialogs\FilterDialog$1.class
 controllers\SortController.class
-appcore\AppCore.class
 model\DataTableModel.class
 controllers\DeleteEntityController.class
 view\DataTableView.class
