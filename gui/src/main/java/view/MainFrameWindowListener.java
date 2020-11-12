@@ -1,8 +1,6 @@
 package view;
 
 
-import view.MainFrame;
-
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -46,7 +44,7 @@ public class MainFrameWindowListener extends WindowAdapter {
                             String path = chooser.getSelectedFile().getAbsolutePath();
                             String name = JOptionPane.showInputDialog(MainFrame.getInstance(), "Enter name of file");
                             try {
-                                written = MainFrame.getInstance().getImportExportService().saveInNewFiles(path, number, name);
+                                written = MainFrame.getInstance().getImportExportService().saveDatabase(path, number, name);
                             } catch (IOException ioException) {
                                 ioException.printStackTrace();
                             }
@@ -54,7 +52,7 @@ public class MainFrameWindowListener extends WindowAdapter {
                     }
 
                 } else {
-                    written = MainFrame.getInstance().getImportExportService().saveInOldFiles(number);
+                    written = MainFrame.getInstance().getImportExportService().saveDatabase(number);
                 }
                 if (written)
                     JOptionPane.showMessageDialog(MainFrame.getInstance(), "Data has been written successfully!");
@@ -77,12 +75,11 @@ public class MainFrameWindowListener extends WindowAdapter {
             int returnVal = chooser.showOpenDialog(MainFrame.getInstance());
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                //TODO Poziv import metode
                 if (chooser.getSelectedFile() != null) {
                     List<File> files = new ArrayList<>();
                     if (chooser.getSelectedFile().isFile()) {
                         files.add(chooser.getSelectedFile());
-                    } else if(chooser.getSelectedFile().isDirectory()) {
+                    } else{
                         if (chooser.getSelectedFile().listFiles() != null) {
                             for (File file : chooser.getSelectedFile().listFiles()) {
                                 if (file.isDirectory())
@@ -90,12 +87,9 @@ public class MainFrameWindowListener extends WindowAdapter {
                             }
                             files = Arrays.asList(chooser.getSelectedFile().listFiles());
                         } else JOptionPane.showMessageDialog(MainFrame.getInstance(), "Need to choose some file");
-                    }else if(chooser.getSelectedFiles() != null){
-                        System.out.println("dsadasdasdasdasdsadasd");
-                        files = Arrays.asList(chooser.getSelectedFiles());
                     }
-                    boolean done = MainFrame.getInstance().getImportExportService().load(files);
-                    if (done) JOptionPane.showMessageDialog(MainFrame.getInstance(), "Data load successfully!");
+                    boolean done = MainFrame.getInstance().getImportExportService().loadDatabase(files);
+                    if (done) JOptionPane.showMessageDialog(MainFrame.getInstance(), "Data loadDatabase successfully!");
                     else JOptionPane.showMessageDialog(MainFrame.getInstance(), "Something gone wrong!");
                 }
 

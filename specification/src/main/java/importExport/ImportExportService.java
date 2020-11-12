@@ -18,7 +18,7 @@ public abstract class ImportExportService {
     public abstract boolean saveDatabase(File file, List<Entity> database) throws IOException;
     public abstract File createDatabase(String namePath);
 
-    public boolean load(List<File> files){
+    public boolean loadDatabase(List<File> files){
         if(files.isEmpty()) return false;
         List<Entity> list = new ArrayList<Entity>();
         try {
@@ -26,8 +26,9 @@ public abstract class ImportExportService {
                 List<Entity> list1 = loadDatabase(file);
                 list.addAll(list1);
             }
-            Database.getInstance().setEntityList(list);
-            Database.getInstance().loadIds();
+           if( Database.getInstance().loadIds(list))
+                Database.getInstance().setEntityList(list);
+           else return false;
             System.out.println( "Ucitano entiteta: "+Database.getInstance().getEntityList().size());
             System.out.println(Database.getInstance().getAllIds());
         }catch (Exception e){
@@ -37,14 +38,14 @@ public abstract class ImportExportService {
         Database.getInstance().setCurrentFiles(files);
         return true;
     }
-    public boolean saveInNewFiles(String path,int numberOfEntity,String nameFile) throws IOException {
+    public boolean saveDatabase(String path, int numberOfEntity, String nameFile) throws IOException {
         int counter = 0;
         int counterFile = 1;
         List<Entity> entityToWrite = new ArrayList<>();
         try {
             for (Entity entity : Database.getInstance().getEntityList()) {
                 if (counter == numberOfEntity) {
-                    File file = createDatabase(path+"\\"+nameFile + counterFile+".json");
+                    File file = createDatabase(path+"\\"+nameFile + counterFile);
                     System.out.println(file.getAbsolutePath());
                     saveDatabase(file, entityToWrite);
                     counter = 0;
@@ -67,7 +68,7 @@ public abstract class ImportExportService {
         }
         return true;
     }
-    public boolean saveInOldFiles(int numberOfEntity){
+    public boolean saveDatabase(int numberOfEntity){
         int counter = 0;
         int counterNewFile = 1;
         int counterOldFile = 0;
@@ -94,7 +95,7 @@ public abstract class ImportExportService {
                 entityToWrite.add(entity);
                 counter++;
             }
-            if(old) {
+            if(old && counterOldFile!= Database.getInstance().getCurrentFiles().size()) {
                 saveDatabase(Database.getInstance().getCurrentFiles().get(counterOldFile), entityToWrite);
                 counterOldFile++;
             }

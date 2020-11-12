@@ -35,7 +35,7 @@ public class MainFrame extends JFrame {
     private ImportExportService importExportService;
     private MainFrame() {
         try {
-            Class.forName("ImportExportJson");
+            Class.forName("ImportExportCustom");
              importExportService = ImportExportManager.getImportExportService();
         }catch (Exception e){
             e.printStackTrace();

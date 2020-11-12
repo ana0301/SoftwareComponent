@@ -98,7 +98,7 @@ public class Database {
 
 
 
-    public boolean loadIds(){
+    public boolean loadIds(List<Entity> entityList){
         for(Entity entity: entityList){
             if(allIds.contains(entity.getId())) {
                 System.out.println("POGRESNA BAZA");
