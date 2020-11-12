@@ -1,14 +1,8 @@
 package model;
 
-
-import com.sun.rowset.internal.Row;
-import view.MainFrame;
-
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 public class DataTableModel extends DefaultTableModel {
 
     private List<Entity> entities;

@@ -2,14 +2,12 @@ package controllers;
 
 import dialogs.AddUpdateDialog;
 import dialogs.ChooseNestedDialog;
-import jdk.nashorn.internal.scripts.JO;
 import model.Entity;
 import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
